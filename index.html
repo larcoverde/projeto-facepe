@@ -17,9 +17,149 @@
             font-family: Arial, Helvetica, sans-serif;
             background: #f4f7f5;
             color: #1f2933;
+            min-height: 100vh;
         }
 
-        /* HEADER */
+        /* ===================== TELA DE LOGIN ===================== */
+        #loginScreen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(160deg, #176b45 0%, #0e3f29 100%);
+            padding: 20px;
+        }
+
+        .login-box {
+            background: white;
+            width: 100%;
+            max-width: 380px;
+            border-radius: 16px;
+            padding: 36px 32px;
+            box-shadow: 0 10px 40px rgba(0,0,0,.25);
+        }
+
+        .login-logo {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: #176b45;
+            margin-bottom: 4px;
+        }
+
+        .login-subtitle {
+            text-align: center;
+            color: #6b7280;
+            font-size: 13px;
+            margin-bottom: 28px;
+        }
+
+        .field {
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 13px;
+            color: #374151;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .field input {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 9px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .field input:focus {
+            border-color: #176b45;
+        }
+
+        .login-button {
+            width: 100%;
+            background: #176b45;
+            color: white;
+            border: none;
+            padding: 14px 0;
+            border-radius: 9px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 6px;
+        }
+
+        .login-button:hover {
+            background: #115438;
+        }
+
+        .login-hint {
+            margin-top: 16px;
+            background: #f0f9f4;
+            border: 1px dashed #b8dcca;
+            border-radius: 9px;
+            padding: 10px 12px;
+            font-size: 12px;
+            color: #176b45;
+            text-align: center;
+        }
+
+        .login-error {
+            display: none;
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 11px 13px;
+            border-radius: 9px;
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+
+        .login-success {
+            display: none;
+            background: #dcfce7;
+            color: #166534;
+            padding: 11px 13px;
+            border-radius: 9px;
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+
+        .login-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+        }
+
+        .login-links-center {
+            justify-content: center;
+        }
+
+        .login-links a {
+            color: #176b45;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .login-links a:hover {
+            text-decoration: underline;
+        }
+
+        .recover-text {
+            color: #6b7280;
+            font-size: 13px;
+            line-height: 19px;
+            margin-bottom: 20px;
+        }
+
+        /* ===================== APP (pós-login) ===================== */
+        #appScreen {
+            display: none;
+        }
+
         header {
             background: #176b45;
             color: white;
@@ -39,9 +179,30 @@
             opacity: .85;
         }
 
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
         .header-status {
             font-size: 13px;
             opacity: .85;
+            text-align: right;
+        }
+
+        .logout-button {
+            background: rgba(255,255,255,.15);
+            color: white;
+            border: 1px solid rgba(255,255,255,.4);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .logout-button:hover {
+            background: rgba(255,255,255,.25);
         }
 
         /* CONTAINER */
@@ -261,6 +422,141 @@
             font-size: 14px;
         }
 
+        /* ===================== ABAS ===================== */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .tab-button {
+            background: white;
+            color: #6b7280;
+            border: 1px solid #e2e6e4;
+            padding: 12px 20px;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .tab-button:hover {
+            background: #f4f7f5;
+        }
+
+        .tab-button.active {
+            background: #176b45;
+            color: white;
+            border-color: #176b45;
+        }
+
+        /* ===================== ROTA DE ENTREGA ===================== */
+        .route-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .route-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .route-item .route-label {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .route-item .route-value {
+            font-size: 14px;
+            font-weight: bold;
+            color: #1f2933;
+        }
+
+        .route-status {
+            background: #fff7e6;
+            border: 1px solid #fde68a;
+            color: #92400e;
+            padding: 11px 14px;
+            border-radius: 9px;
+            font-size: 13px;
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 340px;
+            border: 0;
+            display: block;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 8px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 14px;
+            padding-bottom: 22px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: 5px;
+            top: 22px;
+            bottom: 0;
+            width: 2px;
+            background: #e2e6e4;
+        }
+
+        .timeline-item.last::before {
+            display: none;
+        }
+
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .dot-ok {
+            background: #15803d;
+        }
+
+        .dot-warning {
+            background: #d97706;
+        }
+
+        .dot-progress {
+            background: #2563eb;
+        }
+
+        .timeline-time {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .timeline-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #1f2933;
+            margin-bottom: 3px;
+        }
+
+        .timeline-desc {
+            font-size: 13px;
+            color: #6b7280;
+            line-height: 19px;
+        }
+
         /* FOOTER */
         footer {
             text-align: center;
@@ -309,276 +605,512 @@
                 width: 2px;
                 height: 25px;
             }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .route-summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .map-frame {
+                height: 260px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">
-        🥛 LactApp <span>| Gestão e Qualidade</span>
-    </div>
+<!-- ===================== TELA DE LOGIN ===================== -->
+<div id="loginScreen">
 
-    <div class="header-status">
-        Sistema de rastreabilidade
-    </div>
-</header>
+    <!-- ---------- ENTRAR ---------- -->
+    <div class="login-box" id="loginBox">
 
+        <div class="login-logo">🥛 LactApp</div>
+        <div class="login-subtitle">Gestão e Qualidade — Sistema de rastreabilidade</div>
 
-<main class="container">
+        <div class="login-error" id="loginError">
+            Usuário ou senha inválidos. Tente novamente.
+        </div>
 
-    <!-- BUSCA -->
-    <section class="search-box">
-
-        <h1>Consultar lote</h1>
-
-        <p>
-            Digite o código identificador do lote para consultar sua origem,
-            produção e qualidade.
-        </p>
-
-        <div class="search-area">
-
+        <div class="field">
+            <label for="usuario">Usuário</label>
             <input
                 type="text"
-                id="codigoLote"
-                placeholder="Ex.: LT-2026-0831-001"
+                id="usuario"
+                placeholder="Insira Seu Usuário"
+                autocomplete="username"
             >
-
-            <button onclick="consultarLote()">
-                Consultar
-            </button>
-
         </div>
 
-        <div class="example">
-            💡 Para testar, utilize: <strong>LT-2026-0831-001</strong>
+        <div class="field">
+            <label for="senha">Senha</label>
+            <input
+                type="password"
+                id="senha"
+                placeholder="••••••••"
+                autocomplete="current-password"
+            >
         </div>
 
-        <div class="error" id="erro">
-            Lote não encontrado. Verifique o código informado.
+        <button class="login-button" id="btnEntrar">Entrar</button>
+
+        <div class="login-links">
+            <a href="javascript:void(0)" id="linkEsqueciSenha">Esqueci minha senha</a>
+            <a href="javascript:void(0)" id="linkCriarConta">Criar conta</a>
         </div>
 
-    </section>
+        <div class="login-hint">
+            💡 Demonstração: usuário <strong>fazenda</strong> / senha <strong>123456</strong>
+        </div>
+
+    </div>
 
 
-    <!-- RESULTADO -->
-    <section id="resultado">
+    <!-- ---------- CRIAR CONTA ---------- -->
+    <div class="login-box" id="cadastroBox" style="display:none">
 
-        <div class="result-header">
+        <div class="login-logo">🥛 LactApp</div>
+        <div class="login-subtitle">Criar nova conta</div>
 
-            <h2>Informações do lote</h2>
+        <div class="login-error" id="cadastroError"></div>
+        <div class="login-success" id="cadastroSucesso"></div>
 
-            <div class="status">
-                ✓ Dentro dos padrões
+        <div class="field">
+            <label for="cadNome">Nome completo</label>
+            <input type="text" id="cadNome" placeholder="Seu nome completo" autocomplete="name">
+        </div>
+
+        <div class="field">
+            <label for="cadEmail">E-mail (para recuperação da conta)</label>
+            <input type="email" id="cadEmail" placeholder="seuemail@exemplo.com" autocomplete="email">
+        </div>
+
+        <div class="field">
+            <label for="cadUsuario">Usuário</label>
+            <input type="text" id="cadUsuario" placeholder="Escolha um usuário" autocomplete="username">
+        </div>
+
+        <div class="field">
+            <label for="cadSenha">Senha</label>
+            <input type="password" id="cadSenha" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+        </div>
+
+        <div class="field">
+            <label for="cadConfirmarSenha">Confirmar senha</label>
+            <input type="password" id="cadConfirmarSenha" placeholder="Repita a senha" autocomplete="new-password">
+        </div>
+
+        <button class="login-button" id="btnCriarConta">Criar conta</button>
+
+        <div class="login-links login-links-center">
+            <a href="javascript:void(0)" id="linkVoltarLoginDeCadastro">Já tem conta? Entrar</a>
+        </div>
+
+    </div>
+
+
+    <!-- ---------- RECUPERAR SENHA ---------- -->
+    <div class="login-box" id="recuperarBox" style="display:none">
+
+        <div class="login-logo">🥛 LactApp</div>
+        <div class="login-subtitle">Recuperar acesso à conta</div>
+
+        <p class="recover-text">
+            Informe o e-mail cadastrado. Enviaremos as instruções de
+            redefinição de senha para ele.
+        </p>
+
+        <div class="login-error" id="recuperarError"></div>
+        <div class="login-success" id="recuperarSucesso"></div>
+
+        <div class="field">
+            <label for="recEmail">E-mail cadastrado</label>
+            <input type="email" id="recEmail" placeholder="seuemail@exemplo.com" autocomplete="email">
+        </div>
+
+        <button class="login-button" id="btnRecuperar">Enviar instruções</button>
+
+        <div class="login-links login-links-center">
+            <a href="javascript:void(0)" id="linkVoltarLoginDeRecuperar">Voltar para login</a>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===================== APP (interface de consulta) ===================== -->
+<div id="appScreen">
+
+    <header>
+        <div class="logo">
+            🥛 LactApp <span>| Gestão e Qualidade</span>
+        </div>
+
+        <div class="header-right">
+            <div class="header-status">
+                Sistema de rastreabilidade
             </div>
 
+            <button class="logout-button" id="btnSair">Sair</button>
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <!-- ABAS -->
+        <div class="tabs">
+            <button class="tab-button active" id="tabBtnConsulta">🔍 Consultar Lote</button>
+            <button class="tab-button" id="tabBtnRota">🚚 Rota de Entrega</button>
         </div>
 
 
-        <div class="grid">
+        <!-- ===================== ABA: CONSULTAR LOTE ===================== -->
+        <div id="tabConsulta">
 
-            <!-- PRODUTO -->
+        <!-- BUSCA -->
+        <section class="search-box">
+
+            <h1>Consultar lote</h1>
+
+            <p>
+                Digite o código identificador do lote para consultar sua origem,
+                produção e qualidade.
+            </p>
+
+            <div class="search-area">
+
+                <input
+                    type="text"
+                    id="codigoLote"
+                    placeholder="Ex.: LT-2026-0831-001"
+                >
+
+                <button id="btnConsultar">Consultar</button>
+
+            </div>
+
+            <div class="example">
+                💡 Para testar, utilize: <strong>LT-2026-0831-001</strong>
+            </div>
+
+            <div class="error" id="erro">
+                Lote não encontrado. Verifique o código informado.
+            </div>
+
+        </section>
+
+
+        <!-- RESULTADO -->
+        <section id="resultado">
+
+            <div class="result-header">
+                <h2>Informações do lote</h2>
+
+                <div class="status">✓ Dentro dos padrões</div>
+            </div>
+
+
+            <div class="grid">
+
+                <!-- PRODUTO -->
+                <div class="card">
+
+                    <h3>🥛 Produto</h3>
+
+                    <div class="info">
+                        <span class="label">Produto</span>
+                        <span class="value" id="produto"></span>
+                    </div>
+
+                    <div class="info">
+                        <span class="label">Lote</span>
+                        <span class="value" id="lote"></span>
+                    </div>
+
+                    <div class="info">
+                        <span class="label">Data de produção</span>
+                        <span class="value" id="dataProducao"></span>
+                    </div>
+
+                    <div class="info">
+                        <span class="label">Quantidade</span>
+                        <span class="value" id="quantidade"></span>
+                    </div>
+
+                </div>
+
+
+                <!-- PRODUTOR -->
+                <div class="card">
+
+                    <h3>👨‍🌾 Produtor</h3>
+
+                    <div class="info">
+                        <span class="label">Produtor</span>
+                        <span class="value" id="produtor"></span>
+                    </div>
+
+                    <div class="info">
+                        <span class="label">Fazenda</span>
+                        <span class="value" id="fazenda"></span>
+                    </div>
+
+                    <div class="info">
+                        <span class="label">Município</span>
+                        <span class="value" id="municipio"></span>
+                    </div>
+
+                </div>
+
+
+                <!-- ANIMAL -->
+                <div class="card">
+
+                    <h3>🐄 Animal de origem</h3>
+
+                    <div class="info">
+                        <span class="label">Identificação</span>
+                        <span class="value" id="animal"></span>
+                    </div>
+
+                    <div class="info">
+                        <span class="label">Raça</span>
+                        <span class="value" id="raca"></span>
+                    </div>
+
+                    <div class="info">
+                        <span class="label">Produção diária</span>
+                        <span class="value" id="producaoAnimal"></span>
+                    </div>
+
+                </div>
+
+
+                <!-- LEITE -->
+                <div class="card">
+
+                    <h3>🥛 Leite utilizado</h3>
+
+                    <div class="info">
+                        <span class="label">Data da ordenha</span>
+                        <span class="value" id="ordenha"></span>
+                    </div>
+
+                    <div class="info">
+                        <span class="label">Volume coletado</span>
+                        <span class="value" id="volume"></span>
+                    </div>
+
+                    <div class="info">
+                        <span class="label">Temperatura</span>
+                        <span class="value" id="temperatura"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUALIDADE -->
+            <div class="card" style="margin-top:18px;">
+
+                <h3>📊 Indicadores de qualidade</h3>
+
+                <div class="quality-grid">
+
+                    <div class="quality-item">
+                        <div class="quality-value">3,8%</div>
+                        <div class="quality-label">Gordura</div>
+                        <div class="quality-ok">✓ Adequado</div>
+                    </div>
+
+                    <div class="quality-item">
+                        <div class="quality-value">3,2%</div>
+                        <div class="quality-label">Proteína</div>
+                        <div class="quality-ok">✓ Adequado</div>
+                    </div>
+
+                    <div class="quality-item">
+                        <div class="quality-value">6,7</div>
+                        <div class="quality-label">pH</div>
+                        <div class="quality-ok">✓ Adequado</div>
+                    </div>
+
+                    <div class="quality-item">
+                        <div class="quality-value">4,1°C</div>
+                        <div class="quality-label">Temperatura</div>
+                        <div class="quality-ok">✓ Adequado</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RASTREABILIDADE -->
+            <div class="card" style="margin-top:18px;">
+
+                <h3>🔎 Rastreabilidade</h3>
+
+                <div class="trace">
+
+                    <div class="trace-item">
+                        <div class="trace-icon">🐄</div>
+                        <div class="trace-title">Animal</div>
+                        <div class="trace-subtitle">Vaca #0254</div>
+                    </div>
+
+                    <div class="line"></div>
+
+                    <div class="trace-item">
+                        <div class="trace-icon">🌾</div>
+                        <div class="trace-title">Fazenda</div>
+                        <div class="trace-subtitle">Fazenda Boa Vista</div>
+                    </div>
+
+                    <div class="line"></div>
+
+                    <div class="trace-item">
+                        <div class="trace-icon">🥛</div>
+                        <div class="trace-title">Leite</div>
+                        <div class="trace-subtitle">Ordenha #1842</div>
+                    </div>
+
+                    <div class="line"></div>
+
+                    <div class="trace-item">
+                        <div class="trace-icon">🏭</div>
+                        <div class="trace-title">Produto</div>
+                        <div class="trace-subtitle">Lote LT-2026-0831</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        </div>
+
+
+        <!-- ===================== ABA: ROTA DE ENTREGA ===================== -->
+        <div id="tabRota" style="display:none">
+
+            <!-- RESUMO DA ROTA -->
             <div class="card">
 
-                <h3>🥛 Produto</h3>
+                <h3>🚚 Resumo da rota</h3>
 
-                <div class="info">
-                    <span class="label">Produto</span>
-                    <span class="value" id="produto"></span>
+                <div class="route-summary-grid">
+
+                    <div class="route-item">
+                        <span class="route-label">Origem</span>
+                        <span class="route-value">Fazenda Boa Vista — Zona Rural, Garanhuns/PE</span>
+                    </div>
+
+                    <div class="route-item">
+                        <span class="route-label">Destino</span>
+                        <span class="route-value">Distribuidora Central de Laticínios — Centro, Garanhuns/PE</span>
+                    </div>
+
+                    <div class="route-item">
+                        <span class="route-label">Distância estimada</span>
+                        <span class="route-value">14,6 km</span>
+                    </div>
+
+                    <div class="route-item">
+                        <span class="route-label">Tempo estimado</span>
+                        <span class="route-value">28 min</span>
+                    </div>
+
                 </div>
 
-                <div class="info">
-                    <span class="label">Lote</span>
-                    <span class="value" id="lote"></span>
-                </div>
-
-                <div class="info">
-                    <span class="label">Data de produção</span>
-                    <span class="value" id="dataProducao"></span>
-                </div>
-
-                <div class="info">
-                    <span class="label">Quantidade</span>
-                    <span class="value" id="quantidade"></span>
+                <div class="route-status">
+                    🚛 Status atual: <strong>Trânsito intenso na entrada da cidade — leve atraso</strong>
                 </div>
 
             </div>
 
 
-            <!-- PRODUTOR -->
-            <div class="card">
+            <!-- MAPA -->
+            <div class="card" style="margin-top:18px; padding:0; overflow:hidden;">
 
-                <h3>👨‍🌾 Produtor</h3>
-
-                <div class="info">
-                    <span class="label">Produtor</span>
-                    <span class="value" id="produtor"></span>
-                </div>
-
-                <div class="info">
-                    <span class="label">Fazenda</span>
-                    <span class="value" id="fazenda"></span>
-                </div>
-
-                <div class="info">
-                    <span class="label">Município</span>
-                    <span class="value" id="municipio"></span>
-                </div>
+                <iframe
+                    class="map-frame"
+                    src="https://maps.google.com/maps?saddr=-8.8580,-36.5350&daddr=-8.8929,-36.4938&output=embed"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
 
             </div>
 
 
-            <!-- ANIMAL -->
-            <div class="card">
+            <!-- LINHA DO TEMPO -->
+            <div class="card" style="margin-top:18px;">
 
-                <h3>🐄 Animal de origem</h3>
+                <h3>📍 Situações da entrega (demonstração)</h3>
 
-                <div class="info">
-                    <span class="label">Identificação</span>
-                    <span class="value" id="animal"></span>
-                </div>
+                <div class="timeline">
 
-                <div class="info">
-                    <span class="label">Raça</span>
-                    <span class="value" id="raca"></span>
-                </div>
-
-                <div class="info">
-                    <span class="label">Produção diária</span>
-                    <span class="value" id="producaoAnimal"></span>
-                </div>
-
-            </div>
-
-
-            <!-- LEITE -->
-            <div class="card">
-
-                <h3>🥛 Leite utilizado</h3>
-
-                <div class="info">
-                    <span class="label">Data da ordenha</span>
-                    <span class="value" id="ordenha"></span>
-                </div>
-
-                <div class="info">
-                    <span class="label">Volume coletado</span>
-                    <span class="value" id="volume"></span>
-                </div>
-
-                <div class="info">
-                    <span class="label">Temperatura</span>
-                    <span class="value" id="temperatura"></span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- QUALIDADE -->
-        <div class="card" style="margin-top:18px;">
-
-            <h3>📊 Indicadores de qualidade</h3>
-
-            <div class="quality-grid">
-
-                <div class="quality-item">
-                    <div class="quality-value">3,8%</div>
-                    <div class="quality-label">Gordura</div>
-                    <div class="quality-ok">✓ Adequado</div>
-                </div>
-
-                <div class="quality-item">
-                    <div class="quality-value">3,2%</div>
-                    <div class="quality-label">Proteína</div>
-                    <div class="quality-ok">✓ Adequado</div>
-                </div>
-
-                <div class="quality-item">
-                    <div class="quality-value">6,7</div>
-                    <div class="quality-label">pH</div>
-                    <div class="quality-ok">✓ Adequado</div>
-                </div>
-
-                <div class="quality-item">
-                    <div class="quality-value">4,1°C</div>
-                    <div class="quality-label">Temperatura</div>
-                    <div class="quality-ok">✓ Adequado</div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- RASTREABILIDADE -->
-        <div class="card" style="margin-top:18px;">
-
-            <h3>🔎 Rastreabilidade</h3>
-
-            <div class="trace">
-
-                <div class="trace-item">
-
-                    <div class="trace-icon">🐄</div>
-
-                    <div class="trace-title">
-                        Animal
+                    <div class="timeline-item">
+                        <div class="timeline-dot dot-ok"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">06:45</div>
+                            <div class="timeline-title">Saída da Fazenda Boa Vista</div>
+                            <div class="timeline-desc">
+                                Carregamento do caminhão-tanque concluído, lacre nº 4821 aplicado.
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="trace-subtitle">
-                        Vaca #0254
+                    <div class="timeline-item">
+                        <div class="timeline-dot dot-ok"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">07:20</div>
+                            <div class="timeline-title">Parada no posto BR-423, km 12</div>
+                            <div class="timeline-desc">
+                                Abastecimento do veículo e checagem da temperatura da carga (4,2 °C).
+                            </div>
+                        </div>
                     </div>
 
-                </div>
-
-                <div class="line"></div>
-
-                <div class="trace-item">
-
-                    <div class="trace-icon">🌾</div>
-
-                    <div class="trace-title">
-                        Fazenda
+                    <div class="timeline-item">
+                        <div class="timeline-dot dot-warning"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">07:50</div>
+                            <div class="timeline-title">Trânsito intenso na entrada de Garanhuns</div>
+                            <div class="timeline-desc">
+                                Obra na via de acesso provoca lentidão. Atraso estimado de 10 minutos.
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="trace-subtitle">
-                        Fazenda Boa Vista
+                    <div class="timeline-item">
+                        <div class="timeline-dot dot-progress"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">08:15</div>
+                            <div class="timeline-title">Chegada na Distribuidora Central</div>
+                            <div class="timeline-desc">
+                                Início da conferência e descarregamento do lote LT-2026-0831-001.
+                            </div>
+                        </div>
                     </div>
 
-                </div>
-
-                <div class="line"></div>
-
-                <div class="trace-item">
-
-                    <div class="trace-icon">🥛</div>
-
-                    <div class="trace-title">
-                        Leite
-                    </div>
-
-                    <div class="trace-subtitle">
-                        Ordenha #1842
-                    </div>
-
-                </div>
-
-                <div class="line"></div>
-
-                <div class="trace-item">
-
-                    <div class="trace-icon">🏭</div>
-
-                    <div class="trace-title">
-                        Produto
-                    </div>
-
-                    <div class="trace-subtitle">
-                        Lote LT-2026-0831
+                    <div class="timeline-item last">
+                        <div class="timeline-dot dot-ok"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">08:35</div>
+                            <div class="timeline-title">Entrega concluída</div>
+                            <div class="timeline-desc">
+                                Lote conferido, aprovado e armazenado na câmara fria.
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -587,121 +1119,340 @@
 
         </div>
 
-    </section>
-
-</main>
+    </main>
 
 
-<footer>
-    Protótipo MVP — Gestão e Qualidade de Produtos Lácteos
-</footer>
+    <footer>
+        Protótipo MVP — Gestão e Qualidade de Produtos Lácteos
+    </footer>
+
+</div>
 
 
 <script>
 
-    // Dados fictícios para demonstração do MVP
+    /* ===================== DADOS FICTÍCIOS (MVP) ===================== */
+    /* "Banco de dados" em memória, apenas para demonstração.              */
+    /* Ele é reiniciado sempre que a página é recarregada.                 */
+
+    const usuariosCadastrados = [
+        {
+            nome: "Fazenda Demo",
+            email: "contato@fazendaboavista.com.br",
+            usuario: "fazenda",
+            senha: "123456",
+        },
+    ];
+
     const loteDemo = {
-
         codigo: "LT-2026-0831-001",
-
         produto: "Leite Pasteurizado Integral",
-
         dataProducao: "31/08/2026",
-
         quantidade: "500 litros",
-
         produtor: "João da Silva",
-
         fazenda: "Fazenda Boa Vista",
-
         municipio: "Garanhuns - PE",
-
         animal: "Vaca #0254",
-
         raca: "Girolando",
-
         producaoAnimal: "24 litros/dia",
-
         ordenha: "31/08/2026 — 06:30",
-
         volume: "24 litros",
-
-        temperatura: "4,1 °C"
-
+        temperatura: "4,1 °C",
     };
 
 
-    function consultarLote() {
+    /* ===================== ELEMENTOS ===================== */
 
-        const input = document
-            .getElementById("codigoLote")
-            .value
-            .trim();
+    const loginScreen = document.getElementById("loginScreen");
+    const appScreen = document.getElementById("appScreen");
 
-        const resultado =
-            document.getElementById("resultado");
+    const loginBox = document.getElementById("loginBox");
+    const cadastroBox = document.getElementById("cadastroBox");
+    const recuperarBox = document.getElementById("recuperarBox");
 
-        const erro =
-            document.getElementById("erro");
+    const inputUsuario = document.getElementById("usuario");
+    const inputSenha = document.getElementById("senha");
+    const loginError = document.getElementById("loginError");
+
+    const cadNome = document.getElementById("cadNome");
+    const cadEmail = document.getElementById("cadEmail");
+    const cadUsuario = document.getElementById("cadUsuario");
+    const cadSenha = document.getElementById("cadSenha");
+    const cadConfirmarSenha = document.getElementById("cadConfirmarSenha");
+    const cadastroError = document.getElementById("cadastroError");
+    const cadastroSucesso = document.getElementById("cadastroSucesso");
+
+    const recEmail = document.getElementById("recEmail");
+    const recuperarError = document.getElementById("recuperarError");
+    const recuperarSucesso = document.getElementById("recuperarSucesso");
+
+    const btnEntrar = document.getElementById("btnEntrar");
+    const btnCriarConta = document.getElementById("btnCriarConta");
+    const btnRecuperar = document.getElementById("btnRecuperar");
+    const btnSair = document.getElementById("btnSair");
+    const btnConsultar = document.getElementById("btnConsultar");
+
+    const linkCriarConta = document.getElementById("linkCriarConta");
+    const linkEsqueciSenha = document.getElementById("linkEsqueciSenha");
+    const linkVoltarLoginDeCadastro = document.getElementById("linkVoltarLoginDeCadastro");
+    const linkVoltarLoginDeRecuperar = document.getElementById("linkVoltarLoginDeRecuperar");
+
+    const inputCodigo = document.getElementById("codigoLote");
+    const resultado = document.getElementById("resultado");
+    const erro = document.getElementById("erro");
+
+    const tabBtnConsulta = document.getElementById("tabBtnConsulta");
+    const tabBtnRota = document.getElementById("tabBtnRota");
+    const tabConsulta = document.getElementById("tabConsulta");
+    const tabRota = document.getElementById("tabRota");
 
 
-        // Esconde mensagens anteriores
+    /* ===================== NAVEGAÇÃO ENTRE TELAS DE AUTENTICAÇÃO ===================== */
+
+    function mostrarTelaAuth(tela) {
+
+        loginBox.style.display = tela === "login" ? "block" : "none";
+        cadastroBox.style.display = tela === "cadastro" ? "block" : "none";
+        recuperarBox.style.display = tela === "recuperar" ? "block" : "none";
+
+        loginError.style.display = "none";
+        cadastroError.style.display = "none";
+        cadastroSucesso.style.display = "none";
+        recuperarError.style.display = "none";
+        recuperarSucesso.style.display = "none";
+
+    }
+
+    linkCriarConta.addEventListener("click", function () {
+        mostrarTelaAuth("cadastro");
+    });
+
+    linkEsqueciSenha.addEventListener("click", function () {
+        mostrarTelaAuth("recuperar");
+    });
+
+    linkVoltarLoginDeCadastro.addEventListener("click", function () {
+        mostrarTelaAuth("login");
+    });
+
+    linkVoltarLoginDeRecuperar.addEventListener("click", function () {
+        mostrarTelaAuth("login");
+    });
+
+
+    /* ===================== LOGIN ===================== */
+
+    function fazerLogin() {
+
+        const usuario = inputUsuario.value.trim();
+        const senha = inputSenha.value.trim();
+
+        loginError.style.display = "none";
+
+        const contaValida = usuariosCadastrados.find(function (conta) {
+            return conta.usuario === usuario && conta.senha === senha;
+        });
+
+        if (contaValida) {
+
+            loginScreen.style.display = "none";
+            appScreen.style.display = "block";
+
+        } else {
+
+            loginError.textContent = "Usuário ou senha inválidos. Tente novamente.";
+            loginError.style.display = "block";
+
+        }
+
+    }
+
+    function fazerLogout() {
+
+        appScreen.style.display = "none";
+        loginScreen.style.display = "flex";
+
+        mostrarTelaAuth("login");
+
+        inputUsuario.value = "";
+        inputSenha.value = "";
+
+        inputCodigo.value = "";
         resultado.style.display = "none";
         erro.style.display = "none";
 
+        selecionarAba("consulta");
 
-        // Simula uma consulta
-        if (
-            input.toUpperCase() ===
-            loteDemo.codigo
-        ) {
+    }
 
-            document.getElementById("produto").textContent =
-                loteDemo.produto;
+    btnEntrar.addEventListener("click", fazerLogin);
+    btnSair.addEventListener("click", fazerLogout);
 
-            document.getElementById("lote").textContent =
-                loteDemo.codigo;
+    [inputUsuario, inputSenha].forEach(function (campo) {
 
-            document.getElementById("dataProducao").textContent =
-                loteDemo.dataProducao;
+        campo.addEventListener("keypress", function (event) {
 
-            document.getElementById("quantidade").textContent =
-                loteDemo.quantidade;
+            if (event.key === "Enter") {
+                fazerLogin();
+            }
 
-            document.getElementById("produtor").textContent =
-                loteDemo.produtor;
+        });
 
-            document.getElementById("fazenda").textContent =
-                loteDemo.fazenda;
+    });
 
-            document.getElementById("municipio").textContent =
-                loteDemo.municipio;
 
-            document.getElementById("animal").textContent =
-                loteDemo.animal;
+    /* ===================== CRIAR CONTA ===================== */
 
-            document.getElementById("raca").textContent =
-                loteDemo.raca;
+    function validarEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
 
-            document.getElementById("producaoAnimal").textContent =
-                loteDemo.producaoAnimal;
+    function fazerCadastro() {
 
-            document.getElementById("ordenha").textContent =
-                loteDemo.ordenha;
+        const nome = cadNome.value.trim();
+        const email = cadEmail.value.trim().toLowerCase();
+        const usuario = cadUsuario.value.trim();
+        const senha = cadSenha.value.trim();
+        const confirmarSenha = cadConfirmarSenha.value.trim();
 
-            document.getElementById("volume").textContent =
-                loteDemo.volume;
+        cadastroError.style.display = "none";
+        cadastroSucesso.style.display = "none";
 
-            document.getElementById("temperatura").textContent =
-                loteDemo.temperatura;
+        function mostrarErro(mensagem) {
+            cadastroError.textContent = mensagem;
+            cadastroError.style.display = "block";
+        }
 
+        if (!nome || !email || !usuario || !senha || !confirmarSenha) {
+            mostrarErro("Preencha todos os campos para continuar.");
+            return;
+        }
+
+        if (!validarEmail(email)) {
+            mostrarErro("Informe um e-mail válido — ele será usado para recuperar a conta.");
+            return;
+        }
+
+        if (senha.length < 6) {
+            mostrarErro("A senha deve ter pelo menos 6 caracteres.");
+            return;
+        }
+
+        if (senha !== confirmarSenha) {
+            mostrarErro("As senhas não coincidem.");
+            return;
+        }
+
+        const usuarioExiste = usuariosCadastrados.some(function (conta) {
+            return conta.usuario === usuario;
+        });
+
+        if (usuarioExiste) {
+            mostrarErro("Esse nome de usuário já está em uso. Escolha outro.");
+            return;
+        }
+
+        const emailExiste = usuariosCadastrados.some(function (conta) {
+            return conta.email === email;
+        });
+
+        if (emailExiste) {
+            mostrarErro("Já existe uma conta cadastrada com esse e-mail.");
+            return;
+        }
+
+        usuariosCadastrados.push({ nome: nome, email: email, usuario: usuario, senha: senha });
+
+        cadastroSucesso.textContent =
+            "Conta criada com sucesso! Agora você já pode entrar com seu usuário e senha.";
+        cadastroSucesso.style.display = "block";
+
+        cadNome.value = "";
+        cadEmail.value = "";
+        cadUsuario.value = "";
+        cadSenha.value = "";
+        cadConfirmarSenha.value = "";
+
+        setTimeout(function () {
+            mostrarTelaAuth("login");
+            inputUsuario.value = usuario;
+        }, 1400);
+
+    }
+
+    btnCriarConta.addEventListener("click", fazerCadastro);
+
+
+    /* ===================== RECUPERAR SENHA ===================== */
+
+    function fazerRecuperacao() {
+
+        const email = recEmail.value.trim().toLowerCase();
+
+        recuperarError.style.display = "none";
+        recuperarSucesso.style.display = "none";
+
+        if (!email || !validarEmail(email)) {
+            recuperarError.textContent = "Informe um e-mail válido.";
+            recuperarError.style.display = "block";
+            return;
+        }
+
+        const conta = usuariosCadastrados.find(function (c) {
+            return c.email === email;
+        });
+
+        if (conta) {
+
+            // Demonstração: nenhum e-mail é enviado de verdade.
+            recuperarSucesso.textContent =
+                "Se esse e-mail estiver cadastrado, enviamos as instruções de redefinição de senha para ele. (Demonstração — nenhum e-mail real é enviado.)";
+            recuperarSucesso.style.display = "block";
+
+        } else {
+
+            // Por segurança, a mensagem não revela se o e-mail existe ou não.
+            recuperarSucesso.textContent =
+                "Se esse e-mail estiver cadastrado, enviamos as instruções de redefinição de senha para ele. (Demonstração — nenhum e-mail real é enviado.)";
+            recuperarSucesso.style.display = "block";
+
+        }
+
+        recEmail.value = "";
+
+    }
+
+    btnRecuperar.addEventListener("click", fazerRecuperacao);
+
+
+    /* ===================== CONSULTA DE LOTE ===================== */
+
+    function consultarLote() {
+
+        const input = inputCodigo.value.trim();
+
+        resultado.style.display = "none";
+        erro.style.display = "none";
+
+        if (input.toUpperCase() === loteDemo.codigo) {
+
+            document.getElementById("produto").textContent = loteDemo.produto;
+            document.getElementById("lote").textContent = loteDemo.codigo;
+            document.getElementById("dataProducao").textContent = loteDemo.dataProducao;
+            document.getElementById("quantidade").textContent = loteDemo.quantidade;
+            document.getElementById("produtor").textContent = loteDemo.produtor;
+            document.getElementById("fazenda").textContent = loteDemo.fazenda;
+            document.getElementById("municipio").textContent = loteDemo.municipio;
+            document.getElementById("animal").textContent = loteDemo.animal;
+            document.getElementById("raca").textContent = loteDemo.raca;
+            document.getElementById("producaoAnimal").textContent = loteDemo.producaoAnimal;
+            document.getElementById("ordenha").textContent = loteDemo.ordenha;
+            document.getElementById("volume").textContent = loteDemo.volume;
+            document.getElementById("temperatura").textContent = loteDemo.temperatura;
 
             resultado.style.display = "block";
 
-            // Scroll suave até o resultado
-            resultado.scrollIntoView({
-                behavior: "smooth"
-            });
+            resultado.scrollIntoView({ behavior: "smooth" });
 
         } else {
 
@@ -711,17 +1462,38 @@
 
     }
 
+    btnConsultar.addEventListener("click", consultarLote);
 
-    // Permite consultar apertando ENTER
-    document
-        .getElementById("codigoLote")
-        .addEventListener("keypress", function(event) {
+    inputCodigo.addEventListener("keypress", function (event) {
 
-            if (event.key === "Enter") {
-                consultarLote();
-            }
+        if (event.key === "Enter") {
+            consultarLote();
+        }
 
-        });
+    });
+
+
+    /* ===================== NAVEGAÇÃO POR ABAS ===================== */
+
+    function selecionarAba(aba) {
+
+        const isConsulta = aba === "consulta";
+
+        tabConsulta.style.display = isConsulta ? "block" : "none";
+        tabRota.style.display = isConsulta ? "none" : "block";
+
+        tabBtnConsulta.classList.toggle("active", isConsulta);
+        tabBtnRota.classList.toggle("active", !isConsulta);
+
+    }
+
+    tabBtnConsulta.addEventListener("click", function () {
+        selecionarAba("consulta");
+    });
+
+    tabBtnRota.addEventListener("click", function () {
+        selecionarAba("rota");
+    });
 
 </script>
 

@@ -1051,25 +1051,25 @@
                 <div class="quality-grid">
 
                     <div class="quality-item">
-                        <div class="quality-value">3,8%</div>
+                        <div class="quality-value" id="qualGordura"></div>
                         <div class="quality-label">Gordura</div>
                         <div class="quality-ok">✓ Adequado</div>
                     </div>
 
                     <div class="quality-item">
-                        <div class="quality-value">3,2%</div>
+                        <div class="quality-value" id="qualProteina"></div>
                         <div class="quality-label">Proteína</div>
                         <div class="quality-ok">✓ Adequado</div>
                     </div>
 
                     <div class="quality-item">
-                        <div class="quality-value">6,7</div>
+                        <div class="quality-value" id="qualPh"></div>
                         <div class="quality-label">pH</div>
                         <div class="quality-ok">✓ Adequado</div>
                     </div>
 
                     <div class="quality-item">
-                        <div class="quality-value">4,1°C</div>
+                        <div class="quality-value" id="qualTemperatura"></div>
                         <div class="quality-label">Temperatura</div>
                         <div class="quality-ok">✓ Adequado</div>
                     </div>
@@ -1687,6 +1687,13 @@
             document.getElementById("ordenha").textContent = lote.ordenha;
             document.getElementById("volume").textContent = lote.volume;
             document.getElementById("temperatura").textContent = lote.temperatura;
+
+            if (lote.qualidade) {
+                document.getElementById("qualGordura").textContent = lote.qualidade.gordura;
+                document.getElementById("qualProteina").textContent = lote.qualidade.proteina;
+                document.getElementById("qualPh").textContent = lote.qualidade.ph;
+                document.getElementById("qualTemperatura").textContent = lote.qualidade.temperatura;
+            }
 
             resultado.style.display = "block";
 

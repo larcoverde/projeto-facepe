@@ -13,5 +13,50 @@
         "ordenha": "31/08/2026 — 06:30",
         "volume": "24 litros",
         "temperatura": "4,1 °C"
+    },
+    {
+        "codigo": "LT-2026-0828-002",
+        "produto": "Leite Pasteurizado Desnatado",
+        "dataProducao": "28/08/2026",
+        "quantidade": "350 litros",
+        "produtor": "Maria Oliveira",
+        "fazenda": "Fazenda Santa Rita",
+        "municipio": "Itaíba - PE",
+        "animal": "Vaca #0198",
+        "raca": "Holandesa",
+        "producaoAnimal": "18 litros/dia",
+        "ordenha": "28/08/2026 — 05:45",
+        "volume": "18 litros",
+        "temperatura": "3,9 °C"
+    },
+    {
+        "codigo": "LT-2026-0825-003",
+        "produto": "Iogurte Natural",
+        "dataProducao": "25/08/2026",
+        "quantidade": "200 litros",
+        "produtor": "Antônio Souza",
+        "fazenda": "Fazenda Bela Vista",
+        "municipio": "Itaíba - PE",
+        "animal": "Vaca #0310",
+        "raca": "Jersey",
+        "producaoAnimal": "20 litros/dia",
+        "ordenha": "25/08/2026 — 06:10",
+        "volume": "20 litros",
+        "temperatura": "4,3 °C"
+    },
+    {
+        "codigo": "LT-2026-0820-004",
+        "produto": "Queijo Coalho",
+        "dataProducao": "20/08/2026",
+        "quantidade": "150 kg",
+        "produtor": "Francisca Lima",
+        "fazenda": "Fazenda Boa Vista",
+        "municipio": "Itaíba - PE",
+        "animal": "Vaca #0087",
+        "raca": "Girolando",
+        "producaoAnimal": "22 litros/dia",
+        "ordenha": "20/08/2026 — 06:00",
+        "volume": "22 litros",
+        "temperatura": "4,0 °C"
     }
 ]

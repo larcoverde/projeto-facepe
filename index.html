@@ -293,6 +293,100 @@
             background: #dcefe3;
         }
 
+        /* AUTOCOMPLETE */
+        .input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+        }
+
+        .sugestoes-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: 9px;
+            box-shadow: 0 8px 24px rgba(0,0,0,.12);
+            z-index: 10;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+
+        .sugestoes-dropdown.aberto {
+            display: block;
+        }
+
+        .sugestao-item {
+            padding: 11px 14px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f2f1;
+        }
+
+        .sugestao-item:last-child {
+            border-bottom: none;
+        }
+
+        .sugestao-item:hover {
+            background: #f0f9f4;
+        }
+
+        .sugestao-codigo {
+            font-weight: bold;
+            font-size: 14px;
+            color: #176b45;
+        }
+
+        .sugestao-produto {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+
+        /* LOADING / DISABLED */
+        @keyframes girar {
+            to { transform: rotate(360deg); }
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 11px;
+            height: 11px;
+            border: 2px solid #b8dcca;
+            border-top-color: #176b45;
+            border-radius: 50%;
+            animation: girar .7s linear infinite;
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+
+        button:disabled,
+        input:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+        }
+
+        .btn-tentar-novamente {
+            background: #991b1b;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 8px;
+        }
+
+        .btn-tentar-novamente:hover {
+            background: #7f1717;
+        }
+
         /* RESULTADO */
         #resultado {
             display: none;
@@ -607,6 +701,10 @@
                 flex-direction: column;
             }
 
+            .sugestoes-dropdown {
+                max-height: 180px;
+            }
+
             button {
                 height: 48px;
             }
@@ -808,18 +906,23 @@
 
             <div class="search-area">
 
-                <input
-                    type="text"
-                    id="codigoLote"
-                    placeholder="Ex.: LT-2026-0831-001"
-                >
+                <div class="input-wrapper">
+                    <input
+                        type="text"
+                        id="codigoLote"
+                        placeholder="Ex.: LT-2026-0831-001"
+                        autocomplete="off"
+                        disabled
+                    >
+                    <div class="sugestoes-dropdown" id="sugestoesCodigo"></div>
+                </div>
 
-                <button id="btnConsultar">Consultar</button>
+                <button id="btnConsultar" disabled>Consultar</button>
 
             </div>
 
             <div class="example" id="exemploLotes">
-                💡 Carregando códigos de exemplo...
+                <span class="spinner"></span> Carregando códigos de exemplo...
             </div>
 
             <div class="error" id="erro">
@@ -1171,14 +1274,27 @@
 
     async function carregarLotes() {
 
+        if (exemploLotes) {
+            exemploLotes.innerHTML = '<span class="spinner"></span> Carregando códigos de exemplo...';
+        }
+
         try {
 
             const resposta = await fetch("lotes.json");
+
+            if (!resposta.ok) {
+                throw new Error("Resposta HTTP " + resposta.status);
+            }
+
             lotesCadastrados = await resposta.json();
+
+            if (inputCodigo) inputCodigo.disabled = false;
+            if (btnConsultar) btnConsultar.disabled = false;
 
         } catch (erroCarregamento) {
 
             console.error("Não foi possível carregar lotes.json:", erroCarregamento);
+            lotesCadastrados = [];
 
         }
 
@@ -1192,8 +1308,16 @@
 
         if (!lotesCadastrados || lotesCadastrados.length === 0) {
 
-            exemploLotes.textContent =
-                "⚠️ Não foi possível carregar os lotes de demonstração.";
+            exemploLotes.innerHTML =
+                '⚠️ Não foi possível carregar os lotes de demonstração.' +
+                '<button type="button" class="btn-tentar-novamente" id="btnTentarNovamente">Tentar novamente</button>';
+
+            const btnTentarNovamente = document.getElementById("btnTentarNovamente");
+
+            if (btnTentarNovamente) {
+                btnTentarNovamente.addEventListener("click", carregarLotes);
+            }
+
             return;
 
         }
@@ -1210,6 +1334,7 @@
 
             chip.addEventListener("click", function () {
                 inputCodigo.value = chip.dataset.codigo;
+                fecharSugestoes();
                 consultarLote();
             });
 
@@ -1260,6 +1385,7 @@
     const resultado = document.getElementById("resultado");
     const erro = document.getElementById("erro");
     const exemploLotes = document.getElementById("exemploLotes");
+    const sugestoesCodigo = document.getElementById("sugestoesCodigo");
 
     const tabBtnConsulta = document.getElementById("tabBtnConsulta");
     const tabBtnRota = document.getElementById("tabBtnRota");
@@ -1487,9 +1613,59 @@
 
     /* ===================== CONSULTA DE LOTE ===================== */
 
+    function fecharSugestoes() {
+
+        if (!sugestoesCodigo) return;
+
+        sugestoesCodigo.classList.remove("aberto");
+        sugestoesCodigo.innerHTML = "";
+
+    }
+
+    function mostrarSugestoes(filtro) {
+
+        if (!sugestoesCodigo) return;
+
+        if (!filtro) {
+            fecharSugestoes();
+            return;
+        }
+
+        const correspondencias = lotesCadastrados.filter(function (l) {
+            return l.codigo.toUpperCase().includes(filtro);
+        }).slice(0, 5);
+
+        if (correspondencias.length === 0) {
+            fecharSugestoes();
+            return;
+        }
+
+        sugestoesCodigo.innerHTML = correspondencias.map(function (l) {
+            return '<div class="sugestao-item" data-codigo="' + l.codigo + '">' +
+                        '<div class="sugestao-codigo">' + l.codigo + '</div>' +
+                        '<div class="sugestao-produto">' + l.produto + '</div>' +
+                   '</div>';
+        }).join("");
+
+        sugestoesCodigo.classList.add("aberto");
+
+        sugestoesCodigo.querySelectorAll(".sugestao-item").forEach(function (item) {
+
+            item.addEventListener("click", function () {
+                inputCodigo.value = item.dataset.codigo;
+                fecharSugestoes();
+                consultarLote();
+            });
+
+        });
+
+    }
+
     function consultarLote() {
 
         const input = inputCodigo.value.trim().toUpperCase();
+
+        fecharSugestoes();
 
         resultado.style.display = "none";
         erro.style.display = "none";
@@ -1528,10 +1704,28 @@
 
     btnConsultar.addEventListener("click", consultarLote);
 
+    inputCodigo.addEventListener("input", function () {
+        mostrarSugestoes(inputCodigo.value.trim().toUpperCase());
+    });
+
+    inputCodigo.addEventListener("focus", function () {
+        if (inputCodigo.value.trim()) {
+            mostrarSugestoes(inputCodigo.value.trim().toUpperCase());
+        }
+    });
+
     inputCodigo.addEventListener("keypress", function (event) {
 
         if (event.key === "Enter") {
             consultarLote();
+        }
+
+    });
+
+    document.addEventListener("click", function (event) {
+
+        if (!event.target.closest(".input-wrapper")) {
+            fecharSugestoes();
         }
 
     });

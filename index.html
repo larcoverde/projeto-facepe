@@ -1144,21 +1144,24 @@
         },
     ];
 
-    const loteDemo = {
-        codigo: "LT-2026-0831-001",
-        produto: "Leite Pasteurizado Integral",
-        dataProducao: "31/08/2026",
-        quantidade: "500 litros",
-        produtor: "João da Silva",
-        fazenda: "Fazenda Boa Vista",
-        municipio: "Itaíba - PE",
-        animal: "Vaca #0254",
-        raca: "Girolando",
-        producaoAnimal: "24 litros/dia",
-        ordenha: "31/08/2026 — 06:30",
-        volume: "24 litros",
-        temperatura: "4,1 °C",
-    };
+    let lotesCadastrados = [];
+
+    async function carregarLotes() {
+
+        try {
+
+            const resposta = await fetch("lotes.json");
+            lotesCadastrados = await resposta.json();
+
+        } catch (erroCarregamento) {
+
+            console.error("Não foi possível carregar lotes.json:", erroCarregamento);
+
+        }
+
+    }
+
+    carregarLotes();
 
 
     /* ===================== ELEMENTOS ===================== */
@@ -1429,26 +1432,30 @@
 
     function consultarLote() {
 
-        const input = inputCodigo.value.trim();
+        const input = inputCodigo.value.trim().toUpperCase();
 
         resultado.style.display = "none";
         erro.style.display = "none";
 
-        if (input.toUpperCase() === loteDemo.codigo) {
+        const lote = lotesCadastrados.find(function (l) {
+            return l.codigo === input;
+        });
 
-            document.getElementById("produto").textContent = loteDemo.produto;
-            document.getElementById("lote").textContent = loteDemo.codigo;
-            document.getElementById("dataProducao").textContent = loteDemo.dataProducao;
-            document.getElementById("quantidade").textContent = loteDemo.quantidade;
-            document.getElementById("produtor").textContent = loteDemo.produtor;
-            document.getElementById("fazenda").textContent = loteDemo.fazenda;
-            document.getElementById("municipio").textContent = loteDemo.municipio;
-            document.getElementById("animal").textContent = loteDemo.animal;
-            document.getElementById("raca").textContent = loteDemo.raca;
-            document.getElementById("producaoAnimal").textContent = loteDemo.producaoAnimal;
-            document.getElementById("ordenha").textContent = loteDemo.ordenha;
-            document.getElementById("volume").textContent = loteDemo.volume;
-            document.getElementById("temperatura").textContent = loteDemo.temperatura;
+        if (lote) {
+
+            document.getElementById("produto").textContent = lote.produto;
+            document.getElementById("lote").textContent = lote.codigo;
+            document.getElementById("dataProducao").textContent = lote.dataProducao;
+            document.getElementById("quantidade").textContent = lote.quantidade;
+            document.getElementById("produtor").textContent = lote.produtor;
+            document.getElementById("fazenda").textContent = lote.fazenda;
+            document.getElementById("municipio").textContent = lote.municipio;
+            document.getElementById("animal").textContent = lote.animal;
+            document.getElementById("raca").textContent = lote.raca;
+            document.getElementById("producaoAnimal").textContent = lote.producaoAnimal;
+            document.getElementById("ordenha").textContent = lote.ordenha;
+            document.getElementById("volume").textContent = lote.volume;
+            document.getElementById("temperatura").textContent = lote.temperatura;
 
             resultado.style.display = "block";
 

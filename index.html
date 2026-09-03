@@ -270,6 +270,29 @@
             color: #777;
         }
 
+        .example-codigos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .chip-codigo {
+            display: inline-block;
+            background: #f0f9f4;
+            border: 1px dashed #b8dcca;
+            color: #176b45;
+            font-weight: bold;
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .chip-codigo:hover {
+            background: #dcefe3;
+        }
+
         /* RESULTADO */
         #resultado {
             display: none;
@@ -795,8 +818,8 @@
 
             </div>
 
-            <div class="example">
-                💡 Para testar, utilize: <strong>LT-2026-0831-001</strong>
+            <div class="example" id="exemploLotes">
+                💡 Carregando códigos de exemplo...
             </div>
 
             <div class="error" id="erro">
@@ -1159,6 +1182,39 @@
 
         }
 
+        popularExemplosLotes();
+
+    }
+
+    function popularExemplosLotes() {
+
+        if (!exemploLotes) return;
+
+        if (!lotesCadastrados || lotesCadastrados.length === 0) {
+
+            exemploLotes.textContent =
+                "⚠️ Não foi possível carregar os lotes de demonstração.";
+            return;
+
+        }
+
+        const chipsHtml = lotesCadastrados.map(function (l) {
+            return '<span class="chip-codigo" data-codigo="' + l.codigo + '">' + l.codigo + '</span>';
+        }).join("");
+
+        exemploLotes.innerHTML =
+            '💡 Para testar, clique em um dos códigos abaixo ou digite-o na busca:' +
+            '<div class="example-codigos">' + chipsHtml + '</div>';
+
+        exemploLotes.querySelectorAll(".chip-codigo").forEach(function (chip) {
+
+            chip.addEventListener("click", function () {
+                inputCodigo.value = chip.dataset.codigo;
+                consultarLote();
+            });
+
+        });
+
     }
 
     carregarLotes();
@@ -1203,6 +1259,7 @@
     const inputCodigo = document.getElementById("codigoLote");
     const resultado = document.getElementById("resultado");
     const erro = document.getElementById("erro");
+    const exemploLotes = document.getElementById("exemploLotes");
 
     const tabBtnConsulta = document.getElementById("tabBtnConsulta");
     const tabBtnRota = document.getElementById("tabBtnRota");

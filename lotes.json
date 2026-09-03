@@ -1,0 +1,17 @@
+[
+    {
+        "codigo": "LT-2026-0831-001",
+        "produto": "Leite Pasteurizado Integral",
+        "dataProducao": "31/08/2026",
+        "quantidade": "500 litros",
+        "produtor": "João da Silva",
+        "fazenda": "Fazenda Boa Vista",
+        "municipio": "Itaíba - PE",
+        "animal": "Vaca #0254",
+        "raca": "Girolando",
+        "producaoAnimal": "24 litros/dia",
+        "ordenha": "31/08/2026 — 06:30",
+        "volume": "24 litros",
+        "temperatura": "4,1 °C"
+    }
+]

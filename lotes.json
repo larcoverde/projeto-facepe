@@ -14,10 +14,10 @@
         "volume": "24 litros",
         "temperatura": "4,1 °C",
         "qualidade": {
-            "gordura": "3,8%",
-            "proteina": "3,2%",
-            "ph": "6,7",
-            "temperatura": "4,1°C"
+            "gordura": { "valor": "3,8%", "status": "adequado" },
+            "proteina": { "valor": "3,2%", "status": "adequado" },
+            "ph": { "valor": "6,7", "status": "adequado" },
+            "temperatura": { "valor": "4,1°C", "status": "adequado" }
         }
     },
     {
@@ -33,12 +33,12 @@
         "producaoAnimal": "18 litros/dia",
         "ordenha": "28/08/2026 — 05:45",
         "volume": "18 litros",
-        "temperatura": "3,9 °C",
+        "temperatura": "8,5 °C",
         "qualidade": {
-            "gordura": "0,3%",
-            "proteina": "3,4%",
-            "ph": "6,6",
-            "temperatura": "3,9°C"
+            "gordura": { "valor": "0,3%", "status": "adequado" },
+            "proteina": { "valor": "3,4%", "status": "adequado" },
+            "ph": { "valor": "6,6", "status": "adequado" },
+            "temperatura": { "valor": "8,5°C", "status": "atencao" }
         }
     },
     {
@@ -56,10 +56,10 @@
         "volume": "20 litros",
         "temperatura": "4,3 °C",
         "qualidade": {
-            "gordura": "3,0%",
-            "proteina": "4,5%",
-            "ph": "4,4",
-            "temperatura": "4,3°C"
+            "gordura": { "valor": "3,0%", "status": "adequado" },
+            "proteina": { "valor": "4,5%", "status": "adequado" },
+            "ph": { "valor": "4,4", "status": "adequado" },
+            "temperatura": { "valor": "4,3°C", "status": "adequado" }
         }
     },
     {
@@ -77,10 +77,10 @@
         "volume": "22 litros",
         "temperatura": "4,0 °C",
         "qualidade": {
-            "gordura": "22,0%",
-            "proteina": "18,0%",
-            "ph": "5,7",
-            "temperatura": "4,0°C"
+            "gordura": { "valor": "22,0%", "status": "adequado" },
+            "proteina": { "valor": "18,0%", "status": "adequado" },
+            "ph": { "valor": "5,7", "status": "adequado" },
+            "temperatura": { "valor": "4,0°C", "status": "adequado" }
         }
     }
 ]

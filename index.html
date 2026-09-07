@@ -412,6 +412,16 @@
             font-weight: bold;
         }
 
+        .status.atencao {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status.critico {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
         /* CARDS */
         .grid {
             display: grid;
@@ -465,12 +475,31 @@
             border-radius: 10px;
             padding: 15px;
             text-align: center;
+            border: 1px solid transparent;
+        }
+
+        .quality-item.atencao {
+            background: #fffbeb;
+            border-color: #fde68a;
+        }
+
+        .quality-item.critico {
+            background: #fef2f2;
+            border-color: #fecaca;
         }
 
         .quality-value {
             font-size: 21px;
             font-weight: bold;
             color: #176b45;
+        }
+
+        .quality-item.atencao .quality-value {
+            color: #92400e;
+        }
+
+        .quality-item.critico .quality-value {
+            color: #991b1b;
         }
 
         .quality-label {
@@ -483,6 +512,14 @@
             margin-top: 8px;
             font-size: 11px;
             color: #15803d;
+        }
+
+        .quality-ok.atencao {
+            color: #b45309;
+        }
+
+        .quality-ok.critico {
+            color: #b91c1c;
         }
 
         /* RASTREABILIDADE */
@@ -938,7 +975,7 @@
             <div class="result-header">
                 <h2>Informações do lote</h2>
 
-                <div class="status">✓ Dentro dos padrões</div>
+                <div class="status" id="statusGeral">✓ Dentro dos padrões</div>
             </div>
 
 
@@ -1050,28 +1087,28 @@
 
                 <div class="quality-grid">
 
-                    <div class="quality-item">
+                    <div class="quality-item" id="itemGordura">
                         <div class="quality-value" id="qualGordura"></div>
                         <div class="quality-label">Gordura</div>
-                        <div class="quality-ok">✓ Adequado</div>
+                        <div class="quality-ok" id="statusGordura">✓ Adequado</div>
                     </div>
 
-                    <div class="quality-item">
+                    <div class="quality-item" id="itemProteina">
                         <div class="quality-value" id="qualProteina"></div>
                         <div class="quality-label">Proteína</div>
-                        <div class="quality-ok">✓ Adequado</div>
+                        <div class="quality-ok" id="statusProteina">✓ Adequado</div>
                     </div>
 
-                    <div class="quality-item">
+                    <div class="quality-item" id="itemPh">
                         <div class="quality-value" id="qualPh"></div>
                         <div class="quality-label">pH</div>
-                        <div class="quality-ok">✓ Adequado</div>
+                        <div class="quality-ok" id="statusPh">✓ Adequado</div>
                     </div>
 
-                    <div class="quality-item">
+                    <div class="quality-item" id="itemTemperatura">
                         <div class="quality-value" id="qualTemperatura"></div>
                         <div class="quality-label">Temperatura</div>
-                        <div class="quality-ok">✓ Adequado</div>
+                        <div class="quality-ok" id="statusTemperatura">✓ Adequado</div>
                     </div>
 
                 </div>
@@ -1659,6 +1696,43 @@
 
     }
 
+    const TEXTO_STATUS = {
+        adequado: "✓ Adequado",
+        atencao: "⚠ Atenção",
+        critico: "⛔ Fora do padrão",
+    };
+
+    const TEXTO_STATUS_GERAL = {
+        adequado: "✓ Dentro dos padrões",
+        atencao: "⚠ Atenção necessária",
+        critico: "⛔ Fora dos padrões",
+    };
+
+    const PESO_STATUS = { adequado: 0, atencao: 1, critico: 2 };
+
+    function aplicarIndicador(prefixo, dado) {
+
+        const status = (dado && dado.status) || "adequado";
+
+        document.getElementById("qual" + prefixo).textContent = dado ? dado.valor : "";
+
+        const item = document.getElementById("item" + prefixo);
+        const selo = document.getElementById("status" + prefixo);
+
+        item.classList.remove("atencao", "critico");
+        selo.classList.remove("atencao", "critico");
+
+        if (status !== "adequado") {
+            item.classList.add(status);
+            selo.classList.add(status);
+        }
+
+        selo.textContent = TEXTO_STATUS[status] || TEXTO_STATUS.adequado;
+
+        return status;
+
+    }
+
     function consultarLote() {
 
         const input = inputCodigo.value.trim().toUpperCase();
@@ -1688,12 +1762,28 @@
             document.getElementById("volume").textContent = lote.volume;
             document.getElementById("temperatura").textContent = lote.temperatura;
 
-            if (lote.qualidade) {
-                document.getElementById("qualGordura").textContent = lote.qualidade.gordura;
-                document.getElementById("qualProteina").textContent = lote.qualidade.proteina;
-                document.getElementById("qualPh").textContent = lote.qualidade.ph;
-                document.getElementById("qualTemperatura").textContent = lote.qualidade.temperatura;
+            const qualidade = lote.qualidade || {};
+
+            const statusIndicadores = [
+                aplicarIndicador("Gordura", qualidade.gordura),
+                aplicarIndicador("Proteina", qualidade.proteina),
+                aplicarIndicador("Ph", qualidade.ph),
+                aplicarIndicador("Temperatura", qualidade.temperatura),
+            ];
+
+            const statusGeral = statusIndicadores.reduce(function (pior, atual) {
+                return PESO_STATUS[atual] > PESO_STATUS[pior] ? atual : pior;
+            }, "adequado");
+
+            const badgeGeral = document.getElementById("statusGeral");
+
+            badgeGeral.classList.remove("atencao", "critico");
+
+            if (statusGeral !== "adequado") {
+                badgeGeral.classList.add(statusGeral);
             }
+
+            badgeGeral.textContent = TEXTO_STATUS_GERAL[statusGeral];
 
             resultado.style.display = "block";
 

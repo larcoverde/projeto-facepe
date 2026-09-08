@@ -79,6 +79,56 @@
             border-color: #176b45;
         }
 
+        .field input.valido {
+            border-color: #22c55e;
+        }
+
+        .field input.invalido {
+            border-color: #ef4444;
+        }
+
+        .field-hint {
+            margin-top: 5px;
+            font-size: 12px;
+            min-height: 15px;
+        }
+
+        .field-hint.erro {
+            color: #b91c1c;
+        }
+
+        .field-hint.sucesso {
+            color: #15803d;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            width: 100%;
+            padding-right: 44px;
+        }
+
+        .toggle-senha {
+            position: absolute;
+            right: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            padding: 6px 10px;
+            cursor: pointer;
+            font-size: 16px;
+            color: #6b7280;
+            line-height: 1;
+        }
+
+        .toggle-senha:hover {
+            background: none;
+            color: #176b45;
+        }
+
         .login-button {
             width: 100%;
             background: #176b45;
@@ -369,6 +419,74 @@
         input:disabled {
             opacity: .55;
             cursor: not-allowed;
+        }
+
+        /* MICROINTERAÇÕES */
+        .tela-transicao {
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity .28s ease, transform .28s ease;
+        }
+
+        .tela-transicao.tela-visivel {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn-spinner {
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            border: 2px solid rgba(255,255,255,.5);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: girar .6s linear infinite;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        /* TOASTS */
+        .toast-container {
+            position: fixed;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+            width: min(90%, 380px);
+            pointer-events: none;
+        }
+
+        .toast {
+            background: #1f2937;
+            color: white;
+            padding: 13px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            box-shadow: 0 8px 24px rgba(0,0,0,.25);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity .25s ease, transform .25s ease;
+            border-left: 4px solid #6b7280;
+        }
+
+        .toast.mostrar {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast.sucesso {
+            border-left-color: #22c55e;
+        }
+
+        .toast.erro {
+            border-left-color: #ef4444;
+        }
+
+        .toast.info {
+            border-left-color: #3b82f6;
         }
 
         .btn-tentar-novamente {
@@ -781,11 +899,13 @@
 
 <body>
 
+<div class="toast-container" id="toastContainer"></div>
+
 <!-- ===================== TELA DE LOGIN ===================== -->
-<div id="loginScreen">
+<div id="loginScreen" class="tela-transicao tela-visivel">
 
     <!-- ---------- ENTRAR ---------- -->
-    <div class="login-box" id="loginBox">
+    <div class="login-box tela-transicao tela-visivel" id="loginBox">
 
         <div class="login-logo">🥛 LactApp</div>
         <div class="login-subtitle">Gestão e Qualidade — Sistema de rastreabilidade</div>
@@ -806,12 +926,15 @@
 
         <div class="field">
             <label for="senha">Senha</label>
-            <input
-                type="password"
-                id="senha"
-                placeholder="••••••••"
-                autocomplete="current-password"
-            >
+            <div class="password-wrapper">
+                <input
+                    type="password"
+                    id="senha"
+                    placeholder="••••••••"
+                    autocomplete="current-password"
+                >
+                <button type="button" class="toggle-senha" data-target="senha" aria-label="Mostrar senha">👁</button>
+            </div>
         </div>
 
         <button class="login-button" id="btnEntrar">Entrar</button>
@@ -829,7 +952,7 @@
 
 
     <!-- ---------- CRIAR CONTA ---------- -->
-    <div class="login-box" id="cadastroBox" style="display:none">
+    <div class="login-box tela-transicao" id="cadastroBox" style="display:none">
 
         <div class="login-logo">🥛 LactApp</div>
         <div class="login-subtitle">Criar nova conta</div>
@@ -840,26 +963,37 @@
         <div class="field">
             <label for="cadNome">Nome completo</label>
             <input type="text" id="cadNome" placeholder="Seu nome completo" autocomplete="name">
+            <div class="field-hint" id="cadNomeHint"></div>
         </div>
 
         <div class="field">
             <label for="cadEmail">E-mail (para recuperação da conta)</label>
             <input type="email" id="cadEmail" placeholder="seuemail@exemplo.com" autocomplete="email">
+            <div class="field-hint" id="cadEmailHint"></div>
         </div>
 
         <div class="field">
             <label for="cadUsuario">Usuário</label>
             <input type="text" id="cadUsuario" placeholder="Escolha um usuário" autocomplete="username">
+            <div class="field-hint" id="cadUsuarioHint"></div>
         </div>
 
         <div class="field">
             <label for="cadSenha">Senha</label>
-            <input type="password" id="cadSenha" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+            <div class="password-wrapper">
+                <input type="password" id="cadSenha" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+                <button type="button" class="toggle-senha" data-target="cadSenha" aria-label="Mostrar senha">👁</button>
+            </div>
+            <div class="field-hint" id="cadSenhaHint"></div>
         </div>
 
         <div class="field">
             <label for="cadConfirmarSenha">Confirmar senha</label>
-            <input type="password" id="cadConfirmarSenha" placeholder="Repita a senha" autocomplete="new-password">
+            <div class="password-wrapper">
+                <input type="password" id="cadConfirmarSenha" placeholder="Repita a senha" autocomplete="new-password">
+                <button type="button" class="toggle-senha" data-target="cadConfirmarSenha" aria-label="Mostrar senha">👁</button>
+            </div>
+            <div class="field-hint" id="cadConfirmarSenhaHint"></div>
         </div>
 
         <button class="login-button" id="btnCriarConta">Criar conta</button>
@@ -872,7 +1006,7 @@
 
 
     <!-- ---------- RECUPERAR SENHA ---------- -->
-    <div class="login-box" id="recuperarBox" style="display:none">
+    <div class="login-box tela-transicao" id="recuperarBox" style="display:none">
 
         <div class="login-logo">🥛 LactApp</div>
         <div class="login-subtitle">Recuperar acesso à conta</div>
@@ -888,6 +1022,7 @@
         <div class="field">
             <label for="recEmail">E-mail cadastrado</label>
             <input type="email" id="recEmail" placeholder="seuemail@exemplo.com" autocomplete="email">
+            <div class="field-hint" id="recEmailHint"></div>
         </div>
 
         <button class="login-button" id="btnRecuperar">Enviar instruções</button>
@@ -902,7 +1037,7 @@
 
 
 <!-- ===================== APP (interface de consulta) ===================== -->
-<div id="appScreen">
+<div id="appScreen" class="tela-transicao">
 
     <header>
         <div class="logo">
@@ -929,7 +1064,7 @@
 
 
         <!-- ===================== ABA: CONSULTAR LOTE ===================== -->
-        <div id="tabConsulta">
+        <div id="tabConsulta" class="tela-transicao tela-visivel">
 
         <!-- BUSCA -->
         <section class="search-box">
@@ -970,7 +1105,7 @@
 
 
         <!-- RESULTADO -->
-        <section id="resultado">
+        <section id="resultado" class="tela-transicao">
 
             <div class="result-header">
                 <h2>Informações do lote</h2>
@@ -1163,7 +1298,7 @@
 
 
         <!-- ===================== ABA: ROTA DE ENTREGA ===================== -->
-        <div id="tabRota" style="display:none">
+        <div id="tabRota" class="tela-transicao" style="display:none">
 
             <!-- RESUMO DA ROTA -->
             <div class="card">
@@ -1372,7 +1507,7 @@
             chip.addEventListener("click", function () {
                 inputCodigo.value = chip.dataset.codigo;
                 fecharSugestoes();
-                consultarLote();
+                iniciarConsulta();
             });
 
         });
@@ -1401,9 +1536,15 @@
     const cadastroError = document.getElementById("cadastroError");
     const cadastroSucesso = document.getElementById("cadastroSucesso");
 
+    const cadEmailHint = document.getElementById("cadEmailHint");
+    const cadUsuarioHint = document.getElementById("cadUsuarioHint");
+    const cadSenhaHint = document.getElementById("cadSenhaHint");
+    const cadConfirmarSenhaHint = document.getElementById("cadConfirmarSenhaHint");
+
     const recEmail = document.getElementById("recEmail");
     const recuperarError = document.getElementById("recuperarError");
     const recuperarSucesso = document.getElementById("recuperarSucesso");
+    const recEmailHint = document.getElementById("recEmailHint");
 
     const btnEntrar = document.getElementById("btnEntrar");
     const btnCriarConta = document.getElementById("btnCriarConta");
@@ -1427,14 +1568,111 @@
     const tabConsulta = document.getElementById("tabConsulta");
     const tabRota = document.getElementById("tabRota");
 
+    const toastContainer = document.getElementById("toastContainer");
+
+
+    /* ===================== UTILITÁRIOS DE UX ===================== */
+
+    function mostrarToast(mensagem, tipo) {
+
+        tipo = tipo || "info";
+
+        const toast = document.createElement("div");
+        toast.className = "toast " + tipo;
+        toast.textContent = mensagem;
+
+        toastContainer.appendChild(toast);
+
+        void toast.offsetWidth;
+
+        toast.classList.add("mostrar");
+
+        setTimeout(function () {
+
+            toast.classList.remove("mostrar");
+
+            setTimeout(function () {
+                toast.remove();
+            }, 300);
+
+        }, 3200);
+
+    }
+
+    function exibirComFade(elemento, tipoDisplay) {
+
+        elemento.style.display = tipoDisplay || "block";
+        elemento.classList.remove("tela-visivel");
+
+        void elemento.offsetWidth;
+
+        requestAnimationFrame(function () {
+            elemento.classList.add("tela-visivel");
+        });
+
+    }
+
+    function esconderElemento(elemento) {
+        elemento.classList.remove("tela-visivel");
+        elemento.style.display = "none";
+    }
+
+    function comCarregamento(botao, textoCarregando, atraso, callback) {
+
+        if (botao.disabled) return;
+
+        const textoOriginal = botao.textContent;
+
+        botao.disabled = true;
+        botao.innerHTML = '<span class="btn-spinner"></span>' + textoCarregando;
+
+        setTimeout(function () {
+
+            callback();
+
+            botao.disabled = false;
+            botao.textContent = textoOriginal;
+
+        }, atraso);
+
+    }
+
+    document.querySelectorAll(".toggle-senha").forEach(function (botao) {
+
+        botao.addEventListener("click", function () {
+
+            const campo = document.getElementById(botao.dataset.target);
+
+            if (campo.type === "password") {
+                campo.type = "text";
+                botao.textContent = "🙈";
+                botao.setAttribute("aria-label", "Ocultar senha");
+            } else {
+                campo.type = "password";
+                botao.textContent = "👁";
+                botao.setAttribute("aria-label", "Mostrar senha");
+            }
+
+        });
+
+    });
+
 
     /* ===================== NAVEGAÇÃO ENTRE TELAS DE AUTENTICAÇÃO ===================== */
 
     function mostrarTelaAuth(tela) {
 
-        loginBox.style.display = tela === "login" ? "block" : "none";
-        cadastroBox.style.display = tela === "cadastro" ? "block" : "none";
-        recuperarBox.style.display = tela === "recuperar" ? "block" : "none";
+        const boxes = { login: loginBox, cadastro: cadastroBox, recuperar: recuperarBox };
+
+        Object.keys(boxes).forEach(function (nome) {
+
+            if (nome === tela) {
+                exibirComFade(boxes[nome], "block");
+            } else {
+                esconderElemento(boxes[nome]);
+            }
+
+        });
 
         loginError.style.display = "none";
         cadastroError.style.display = "none";
@@ -1476,8 +1714,10 @@
 
         if (contaValida) {
 
-            loginScreen.style.display = "none";
-            appScreen.style.display = "block";
+            esconderElemento(loginScreen);
+            exibirComFade(appScreen, "block");
+
+            mostrarToast("Login realizado com sucesso!", "sucesso");
 
         } else {
 
@@ -1490,8 +1730,9 @@
 
     function fazerLogout() {
 
-        appScreen.style.display = "none";
-        loginScreen.style.display = "flex";
+        esconderElemento(appScreen);
+
+        exibirComFade(loginScreen, "flex");
 
         mostrarTelaAuth("login");
 
@@ -1499,14 +1740,20 @@
         inputSenha.value = "";
 
         inputCodigo.value = "";
-        resultado.style.display = "none";
+        esconderElemento(resultado);
         erro.style.display = "none";
 
         selecionarAba("consulta");
 
+        mostrarToast("Você saiu da sua conta.", "info");
+
     }
 
-    btnEntrar.addEventListener("click", fazerLogin);
+    function iniciarLogin() {
+        comCarregamento(btnEntrar, "Entrando...", 450, fazerLogin);
+    }
+
+    btnEntrar.addEventListener("click", iniciarLogin);
     btnSair.addEventListener("click", fazerLogout);
 
     [inputUsuario, inputSenha].forEach(function (campo) {
@@ -1514,7 +1761,7 @@
         campo.addEventListener("keypress", function (event) {
 
             if (event.key === "Enter") {
-                fazerLogin();
+                iniciarLogin();
             }
 
         });
@@ -1527,6 +1774,68 @@
     function validarEmail(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
+
+    function marcarCampo(input, hintEl, ok, mensagem) {
+
+        input.classList.remove("valido", "invalido");
+
+        if (input.value.trim() === "") {
+            hintEl.textContent = "";
+            hintEl.classList.remove("erro", "sucesso");
+            return;
+        }
+
+        input.classList.add(ok ? "valido" : "invalido");
+        hintEl.textContent = mensagem;
+        hintEl.classList.toggle("erro", !ok);
+        hintEl.classList.toggle("sucesso", ok);
+
+    }
+
+    cadEmail.addEventListener("input", function () {
+
+        const email = cadEmail.value.trim();
+        const ok = validarEmail(email);
+
+        marcarCampo(cadEmail, cadEmailHint, ok, ok ? "✓ E-mail válido" : "E-mail em formato inválido");
+
+    });
+
+    cadUsuario.addEventListener("input", function () {
+
+        const usuario = cadUsuario.value.trim();
+        const emUso = usuariosCadastrados.some(function (c) { return c.usuario === usuario; });
+
+        marcarCampo(
+            cadUsuario,
+            cadUsuarioHint,
+            usuario.length >= 3 && !emUso,
+            emUso ? "Esse usuário já está em uso" :
+                usuario.length < 3 ? "Use pelo menos 3 caracteres" : "✓ Usuário disponível"
+        );
+
+    });
+
+    cadSenha.addEventListener("input", function () {
+
+        const senha = cadSenha.value;
+        const ok = senha.length >= 6;
+
+        marcarCampo(cadSenha, cadSenhaHint, ok, ok ? "✓ Senha com tamanho adequado" : "Faltam " + (6 - senha.length) + " caractere(s)");
+
+        if (cadConfirmarSenha.value) {
+            cadConfirmarSenha.dispatchEvent(new Event("input"));
+        }
+
+    });
+
+    cadConfirmarSenha.addEventListener("input", function () {
+
+        const ok = cadConfirmarSenha.value === cadSenha.value && cadConfirmarSenha.value !== "";
+
+        marcarCampo(cadConfirmarSenha, cadConfirmarSenhaHint, ok, ok ? "✓ As senhas coincidem" : "As senhas não coincidem");
+
+    });
 
     function fazerCadastro() {
 
@@ -1588,11 +1897,22 @@
             "Conta criada com sucesso! Agora você já pode entrar com seu usuário e senha.";
         cadastroSucesso.style.display = "block";
 
+        mostrarToast("Conta criada com sucesso!", "sucesso");
+
         cadNome.value = "";
         cadEmail.value = "";
         cadUsuario.value = "";
         cadSenha.value = "";
         cadConfirmarSenha.value = "";
+
+        [cadEmail, cadUsuario, cadSenha, cadConfirmarSenha].forEach(function (campo) {
+            campo.classList.remove("valido", "invalido");
+        });
+
+        [cadEmailHint, cadUsuarioHint, cadSenhaHint, cadConfirmarSenhaHint].forEach(function (hint) {
+            hint.textContent = "";
+            hint.classList.remove("erro", "sucesso");
+        });
 
         setTimeout(function () {
             mostrarTelaAuth("login");
@@ -1601,10 +1921,22 @@
 
     }
 
-    btnCriarConta.addEventListener("click", fazerCadastro);
+    function iniciarCadastro() {
+        comCarregamento(btnCriarConta, "Criando conta...", 600, fazerCadastro);
+    }
+
+    btnCriarConta.addEventListener("click", iniciarCadastro);
 
 
     /* ===================== RECUPERAR SENHA ===================== */
+
+    recEmail.addEventListener("input", function () {
+
+        const ok = validarEmail(recEmail.value.trim());
+
+        marcarCampo(recEmail, recEmailHint, ok, ok ? "✓ E-mail válido" : "E-mail em formato inválido");
+
+    });
 
     function fazerRecuperacao() {
 
@@ -1619,31 +1951,25 @@
             return;
         }
 
-        const conta = usuariosCadastrados.find(function (c) {
-            return c.email === email;
-        });
+        // Por segurança, a mensagem de sucesso não revela se o e-mail existe ou não.
+        recuperarSucesso.textContent =
+            "Se esse e-mail estiver cadastrado, enviamos as instruções de redefinição de senha para ele. (Demonstração — nenhum e-mail real é enviado.)";
+        recuperarSucesso.style.display = "block";
 
-        if (conta) {
-
-            // Demonstração: nenhum e-mail é enviado de verdade.
-            recuperarSucesso.textContent =
-                "Se esse e-mail estiver cadastrado, enviamos as instruções de redefinição de senha para ele. (Demonstração — nenhum e-mail real é enviado.)";
-            recuperarSucesso.style.display = "block";
-
-        } else {
-
-            // Por segurança, a mensagem não revela se o e-mail existe ou não.
-            recuperarSucesso.textContent =
-                "Se esse e-mail estiver cadastrado, enviamos as instruções de redefinição de senha para ele. (Demonstração — nenhum e-mail real é enviado.)";
-            recuperarSucesso.style.display = "block";
-
-        }
+        mostrarToast("Instruções enviadas (demonstração).", "info");
 
         recEmail.value = "";
+        recEmail.classList.remove("valido", "invalido");
+        recEmailHint.textContent = "";
+        recEmailHint.classList.remove("erro", "sucesso");
 
     }
 
-    btnRecuperar.addEventListener("click", fazerRecuperacao);
+    function iniciarRecuperacao() {
+        comCarregamento(btnRecuperar, "Enviando...", 600, fazerRecuperacao);
+    }
+
+    btnRecuperar.addEventListener("click", iniciarRecuperacao);
 
 
     /* ===================== CONSULTA DE LOTE ===================== */
@@ -1689,7 +2015,7 @@
             item.addEventListener("click", function () {
                 inputCodigo.value = item.dataset.codigo;
                 fecharSugestoes();
-                consultarLote();
+                iniciarConsulta();
             });
 
         });
@@ -1785,7 +2111,7 @@
 
             badgeGeral.textContent = TEXTO_STATUS_GERAL[statusGeral];
 
-            resultado.style.display = "block";
+            exibirComFade(resultado, "block");
 
             resultado.scrollIntoView({ behavior: "smooth" });
 
@@ -1797,7 +2123,11 @@
 
     }
 
-    btnConsultar.addEventListener("click", consultarLote);
+    function iniciarConsulta() {
+        comCarregamento(btnConsultar, "Consultando...", 300, consultarLote);
+    }
+
+    btnConsultar.addEventListener("click", iniciarConsulta);
 
     inputCodigo.addEventListener("input", function () {
         mostrarSugestoes(inputCodigo.value.trim().toUpperCase());
@@ -1812,7 +2142,7 @@
     inputCodigo.addEventListener("keypress", function (event) {
 
         if (event.key === "Enter") {
-            consultarLote();
+            iniciarConsulta();
         }
 
     });
@@ -1832,8 +2162,13 @@
 
         const isConsulta = aba === "consulta";
 
-        tabConsulta.style.display = isConsulta ? "block" : "none";
-        tabRota.style.display = isConsulta ? "none" : "block";
+        if (isConsulta) {
+            esconderElemento(tabRota);
+            exibirComFade(tabConsulta, "block");
+        } else {
+            esconderElemento(tabConsulta);
+            exibirComFade(tabRota, "block");
+        }
 
         tabBtnConsulta.classList.toggle("active", isConsulta);
         tabBtnRota.classList.toggle("active", !isConsulta);
@@ -1857,6 +2192,7 @@
     carregarLotes();
 
 </script>
+
 
 </body>
 </html>

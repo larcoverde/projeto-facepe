@@ -5,3 +5,11 @@
 /* declaradas.                                                 */
 
 carregarLotes();
+
+// Se o usuário chegou pela landing page com a intenção de criar conta
+// (?tela=cadastro), já abre o formulário de cadastro automaticamente.
+const parametrosUrl = new URLSearchParams(window.location.search);
+
+if (parametrosUrl.get("tela") === "cadastro") {
+    mostrarTelaAuth("cadastro");
+}

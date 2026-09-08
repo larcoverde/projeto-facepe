@@ -4,557 +4,265 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>LactApp — Gestão e Qualidade</title>
+    <title>LactApp — Rastreabilidade e Qualidade de Produtos Lácteos, grátis</title>
+    <meta name="description" content="Rastreie a origem, a qualidade e a rota de cada lote de produto lácteo, do produtor ao consumidor. Grátis, sem instalação.">
 
     <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/autenticacao.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/componentes.css">
-    <link rel="stylesheet" href="css/consulta-lote.css">
-    <link rel="stylesheet" href="css/rota.css">
-    <link rel="stylesheet" href="css/responsivo.css">
+    <link rel="stylesheet" href="css/landing.css">
 </head>
 <body>
 
-<div class="toast-container" id="toastContainer"></div>
+<!-- ===================== HERO ===================== -->
+<section class="hero">
 
-<!-- ===================== TELA DE LOGIN ===================== -->
-<div id="loginScreen" class="tela-transicao tela-visivel">
-
-    <!-- ---------- ENTRAR ---------- -->
-    <div class="login-box tela-transicao tela-visivel" id="loginBox">
-
-        <div class="login-logo">🥛 LactApp</div>
-        <div class="login-subtitle">Gestão e Qualidade — Sistema de rastreabilidade</div>
-
-        <div class="login-error" id="loginError">
-            Usuário ou senha inválidos. Tente novamente.
-        </div>
-
-        <div class="field">
-            <label for="usuario">Usuário</label>
-            <input
-                type="text"
-                id="usuario"
-                placeholder="Insira Seu Usuário"
-                autocomplete="username"
-            >
-        </div>
-
-        <div class="field">
-            <label for="senha">Senha</label>
-            <div class="password-wrapper">
-                <input
-                    type="password"
-                    id="senha"
-                    placeholder="••••••••"
-                    autocomplete="current-password"
-                >
-                <button type="button" class="toggle-senha" data-target="senha" aria-label="Mostrar senha">👁</button>
-            </div>
-        </div>
-
-        <button class="login-button" id="btnEntrar">Entrar</button>
-
-        <div class="login-links">
-            <a href="javascript:void(0)" id="linkEsqueciSenha">Esqueci minha senha</a>
-            <a href="javascript:void(0)" id="linkCriarConta">Criar conta</a>
-        </div>
-
-        <div class="login-hint">
-            💡 Demonstração: usuário <strong>fazenda</strong> / senha <strong>123456</strong>
-        </div>
-
-    </div>
-
-
-    <!-- ---------- CRIAR CONTA ---------- -->
-    <div class="login-box tela-transicao" id="cadastroBox" style="display:none">
-
-        <div class="login-logo">🥛 LactApp</div>
-        <div class="login-subtitle">Criar nova conta</div>
-
-        <div class="login-error" id="cadastroError"></div>
-        <div class="login-success" id="cadastroSucesso"></div>
-
-        <div class="field">
-            <label for="cadNome">Nome completo</label>
-            <input type="text" id="cadNome" placeholder="Seu nome completo" autocomplete="name">
-            <div class="field-hint" id="cadNomeHint"></div>
-        </div>
-
-        <div class="field">
-            <label for="cadEmail">E-mail (para recuperação da conta)</label>
-            <input type="email" id="cadEmail" placeholder="seuemail@exemplo.com" autocomplete="email">
-            <div class="field-hint" id="cadEmailHint"></div>
-        </div>
-
-        <div class="field">
-            <label for="cadUsuario">Usuário</label>
-            <input type="text" id="cadUsuario" placeholder="Escolha um usuário" autocomplete="username">
-            <div class="field-hint" id="cadUsuarioHint"></div>
-        </div>
-
-        <div class="field">
-            <label for="cadSenha">Senha</label>
-            <div class="password-wrapper">
-                <input type="password" id="cadSenha" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
-                <button type="button" class="toggle-senha" data-target="cadSenha" aria-label="Mostrar senha">👁</button>
-            </div>
-            <div class="field-hint" id="cadSenhaHint"></div>
-        </div>
-
-        <div class="field">
-            <label for="cadConfirmarSenha">Confirmar senha</label>
-            <div class="password-wrapper">
-                <input type="password" id="cadConfirmarSenha" placeholder="Repita a senha" autocomplete="new-password">
-                <button type="button" class="toggle-senha" data-target="cadConfirmarSenha" aria-label="Mostrar senha">👁</button>
-            </div>
-            <div class="field-hint" id="cadConfirmarSenhaHint"></div>
-        </div>
-
-        <button class="login-button" id="btnCriarConta">Criar conta</button>
-
-        <div class="login-links login-links-center">
-            <a href="javascript:void(0)" id="linkVoltarLoginDeCadastro">Já tem conta? Entrar</a>
-        </div>
-
-    </div>
-
-
-    <!-- ---------- RECUPERAR SENHA ---------- -->
-    <div class="login-box tela-transicao" id="recuperarBox" style="display:none">
-
-        <div class="login-logo">🥛 LactApp</div>
-        <div class="login-subtitle">Recuperar acesso à conta</div>
-
-        <p class="recover-text">
-            Informe o e-mail cadastrado. Enviaremos as instruções de
-            redefinição de senha para ele.
-        </p>
-
-        <div class="login-error" id="recuperarError"></div>
-        <div class="login-success" id="recuperarSucesso"></div>
-
-        <div class="field">
-            <label for="recEmail">E-mail cadastrado</label>
-            <input type="email" id="recEmail" placeholder="seuemail@exemplo.com" autocomplete="email">
-            <div class="field-hint" id="recEmailHint"></div>
-        </div>
-
-        <button class="login-button" id="btnRecuperar">Enviar instruções</button>
-
-        <div class="login-links login-links-center">
-            <a href="javascript:void(0)" id="linkVoltarLoginDeRecuperar">Voltar para login</a>
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ===================== APP (interface de consulta) ===================== -->
-<div id="appScreen" class="tela-transicao">
-
-    <header>
-        <div class="logo">
-            🥛 LactApp <span>| Gestão e Qualidade</span>
-        </div>
-
-        <div class="header-right">
-            <div class="header-status">
-                Sistema de rastreabilidade
-            </div>
-
-            <button class="logout-button" id="btnSair">Sair</button>
-        </div>
+    <header class="landing-header">
+        <a class="logo-landing" href="index.html">🥛 LactApp</a>
+        <a class="botao-entrar" href="app.html">Entrar</a>
     </header>
 
+    <div class="hero-content">
 
-    <main class="container">
+        <div>
+            <span class="hero-selo">🐄 Feito para produtores e laticínios</span>
 
-        <!-- ABAS -->
-        <div class="tabs">
-            <button class="tab-button active" id="tabBtnConsulta">🔍 Consultar Lote</button>
-            <button class="tab-button" id="tabBtnRota">🚚 Rota de Entrega</button>
-        </div>
-
-
-        <!-- ===================== ABA: CONSULTAR LOTE ===================== -->
-        <div id="tabConsulta" class="tela-transicao tela-visivel">
-
-        <!-- BUSCA -->
-        <section class="search-box">
-
-            <h1>Consultar lote</h1>
+            <h1>Rastreie cada lote de leite, <span>do curral à mesa</span></h1>
 
             <p>
-                Digite o código identificador do lote para consultar sua origem,
-                produção e qualidade.
+                O LactApp mostra a origem, a qualidade e o trajeto de cada lote em segundos —
+                substituindo planilhas soltas e ligações pra conferir informação. Tudo isso
+                sem custo nenhum.
             </p>
 
-            <div class="search-area">
-
-                <div class="input-wrapper">
-                    <input
-                        type="text"
-                        id="codigoLote"
-                        placeholder="Ex.: LT-2026-0831-001"
-                        autocomplete="off"
-                        disabled
-                    >
-                    <div class="sugestoes-dropdown" id="sugestoesCodigo"></div>
-                </div>
-
-                <button id="btnConsultar" disabled>Consultar</button>
-
+            <div class="hero-ctas">
+                <a class="botao-cta-primario" href="app.html?tela=cadastro">Criar conta grátis</a>
+                <a class="link-cta-secundario" href="app.html">Já tenho conta →</a>
             </div>
 
-            <div class="example" id="exemploLotes">
-                <span class="spinner"></span> Carregando códigos de exemplo...
-            </div>
-
-            <div class="error" id="erro">
-                Lote não encontrado. Verifique o código informado.
-            </div>
-
-        </section>
-
-
-        <!-- RESULTADO -->
-        <section id="resultado" class="tela-transicao">
-
-            <div class="result-header">
-                <h2>Informações do lote</h2>
-
-                <div class="status" id="statusGeral">✓ Dentro dos padrões</div>
-            </div>
-
-
-            <div class="grid">
-
-                <!-- PRODUTO -->
-                <div class="card">
-
-                    <h3>🥛 Produto</h3>
-
-                    <div class="info">
-                        <span class="label">Produto</span>
-                        <span class="value" id="produto"></span>
-                    </div>
-
-                    <div class="info">
-                        <span class="label">Lote</span>
-                        <span class="value" id="lote"></span>
-                    </div>
-
-                    <div class="info">
-                        <span class="label">Data de produção</span>
-                        <span class="value" id="dataProducao"></span>
-                    </div>
-
-                    <div class="info">
-                        <span class="label">Quantidade</span>
-                        <span class="value" id="quantidade"></span>
-                    </div>
-
-                </div>
-
-
-                <!-- PRODUTOR -->
-                <div class="card">
-
-                    <h3>👨‍🌾 Produtor</h3>
-
-                    <div class="info">
-                        <span class="label">Produtor</span>
-                        <span class="value" id="produtor"></span>
-                    </div>
-
-                    <div class="info">
-                        <span class="label">Fazenda</span>
-                        <span class="value" id="fazenda"></span>
-                    </div>
-
-                    <div class="info">
-                        <span class="label">Município</span>
-                        <span class="value" id="municipio"></span>
-                    </div>
-
-                </div>
-
-
-                <!-- ANIMAL -->
-                <div class="card">
-
-                    <h3>🐄 Animal de origem</h3>
-
-                    <div class="info">
-                        <span class="label">Identificação</span>
-                        <span class="value" id="animal"></span>
-                    </div>
-
-                    <div class="info">
-                        <span class="label">Raça</span>
-                        <span class="value" id="raca"></span>
-                    </div>
-
-                    <div class="info">
-                        <span class="label">Produção diária</span>
-                        <span class="value" id="producaoAnimal"></span>
-                    </div>
-
-                </div>
-
-
-                <!-- LEITE -->
-                <div class="card">
-
-                    <h3>🥛 Leite utilizado</h3>
-
-                    <div class="info">
-                        <span class="label">Data da ordenha</span>
-                        <span class="value" id="ordenha"></span>
-                    </div>
-
-                    <div class="info">
-                        <span class="label">Volume coletado</span>
-                        <span class="value" id="volume"></span>
-                    </div>
-
-                    <div class="info">
-                        <span class="label">Temperatura</span>
-                        <span class="value" id="temperatura"></span>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- QUALIDADE -->
-            <div class="card" style="margin-top:18px;">
-
-                <h3>📊 Indicadores de qualidade</h3>
-
-                <div class="quality-grid">
-
-                    <div class="quality-item" id="itemGordura">
-                        <div class="quality-value" id="qualGordura"></div>
-                        <div class="quality-label">Gordura</div>
-                        <div class="quality-ok" id="statusGordura">✓ Adequado</div>
-                    </div>
-
-                    <div class="quality-item" id="itemProteina">
-                        <div class="quality-value" id="qualProteina"></div>
-                        <div class="quality-label">Proteína</div>
-                        <div class="quality-ok" id="statusProteina">✓ Adequado</div>
-                    </div>
-
-                    <div class="quality-item" id="itemPh">
-                        <div class="quality-value" id="qualPh"></div>
-                        <div class="quality-label">pH</div>
-                        <div class="quality-ok" id="statusPh">✓ Adequado</div>
-                    </div>
-
-                    <div class="quality-item" id="itemTemperatura">
-                        <div class="quality-value" id="qualTemperatura"></div>
-                        <div class="quality-label">Temperatura</div>
-                        <div class="quality-ok" id="statusTemperatura">✓ Adequado</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- RASTREABILIDADE -->
-            <div class="card" style="margin-top:18px;">
-
-                <h3>🔎 Rastreabilidade</h3>
-
-                <div class="trace">
-
-                    <div class="trace-item">
-                        <div class="trace-icon">🐄</div>
-                        <div class="trace-title">Animal</div>
-                        <div class="trace-subtitle">Vaca #0254</div>
-                    </div>
-
-                    <div class="line"></div>
-
-                    <div class="trace-item">
-                        <div class="trace-icon">🌾</div>
-                        <div class="trace-title">Fazenda</div>
-                        <div class="trace-subtitle">Fazenda Boa Vista</div>
-                    </div>
-
-                    <div class="line"></div>
-
-                    <div class="trace-item">
-                        <div class="trace-icon">🥛</div>
-                        <div class="trace-title">Leite</div>
-                        <div class="trace-subtitle">Ordenha #1842</div>
-                    </div>
-
-                    <div class="line"></div>
-
-                    <div class="trace-item">
-                        <div class="trace-icon">🏭</div>
-                        <div class="trace-title">Produto</div>
-                        <div class="trace-subtitle">Lote LT-2026-0831</div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
+            <div class="hero-nota-gratis">✓ Grátis ✓ Sem cartão de crédito ✓ Leva menos de 1 minuto</div>
         </div>
 
+        <div class="hero-mockup" aria-hidden="true">
 
-        <!-- ===================== ABA: ROTA DE ENTREGA ===================== -->
-        <div id="tabRota" class="tela-transicao" style="display:none">
-
-            <!-- RESUMO DA ROTA -->
-            <div class="card">
-
-                <h3>🚚 Resumo da rota</h3>
-
-                <div class="route-summary-grid">
-
-                    <div class="route-item">
-                        <span class="route-label">Origem</span>
-                        <span class="route-value">Fazenda Boa Vista — Zona Rural, Itaíba/PE</span>
-                    </div>
-
-                    <div class="route-item">
-                        <span class="route-label">Destino</span>
-                        <span class="route-value">Distribuidora Central de Laticínios — Centro, Itaíba/PE</span>
-                    </div>
-
-                    <div class="route-item">
-                        <span class="route-label">Distância estimada</span>
-                        <span class="route-value">14,6 km</span>
-                    </div>
-
-                    <div class="route-item">
-                        <span class="route-label">Tempo estimado</span>
-                        <span class="route-value">28 min</span>
-                    </div>
-
-                </div>
-
-                <div class="route-status">
-                    🚛 Status atual: <strong>Trânsito intenso na entrada da cidade — leve atraso</strong>
-                </div>
-
+            <div class="hero-mockup-header">
+                <strong>Informações do lote</strong>
+                <span class="hero-mockup-selo">✓ Dentro dos padrões</span>
             </div>
 
-
-            <!-- MAPA -->
-            <div class="card" style="margin-top:18px; padding:0; overflow:hidden;">
-
-                <iframe
-                    class="map-frame"
-                    src="https://maps.google.com/maps?saddr=-8.9280,-37.4400&daddr=-8.9478,-37.4228&output=embed"
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                ></iframe>
-
+            <div class="hero-mockup-grid">
+                <div class="hero-mockup-item">
+                    <div class="valor">3,8%</div>
+                    <div class="rotulo">Gordura</div>
+                </div>
+                <div class="hero-mockup-item">
+                    <div class="valor">3,2%</div>
+                    <div class="rotulo">Proteína</div>
+                </div>
+                <div class="hero-mockup-item">
+                    <div class="valor">6,7</div>
+                    <div class="rotulo">pH</div>
+                </div>
+                <div class="hero-mockup-item">
+                    <div class="valor">4,1°C</div>
+                    <div class="rotulo">Temp.</div>
+                </div>
             </div>
 
-
-            <!-- LINHA DO TEMPO -->
-            <div class="card" style="margin-top:18px;">
-
-                <h3>📍 Situações da entrega (demonstração)</h3>
-
-                <div class="timeline">
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot dot-ok"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-time">06:45</div>
-                            <div class="timeline-title">Saída da Fazenda Boa Vista</div>
-                            <div class="timeline-desc">
-                                Carregamento do caminhão-tanque concluído, lacre nº 4821 aplicado.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot dot-ok"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-time">07:20</div>
-                            <div class="timeline-title">Parada no posto BR-423, km 12</div>
-                            <div class="timeline-desc">
-                                Abastecimento do veículo e checagem da temperatura da carga (4,2 °C).
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot dot-warning"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-time">07:50</div>
-                            <div class="timeline-title">Trânsito intenso na entrada de Itaíba</div>
-                            <div class="timeline-desc">
-                                Obra na via de acesso provoca lentidão. Atraso estimado de 10 minutos.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot dot-progress"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-time">08:15</div>
-                            <div class="timeline-title">Chegada na Distribuidora Central</div>
-                            <div class="timeline-desc">
-                                Início da conferência e descarregamento do lote LT-2026-0831-001.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item last">
-                        <div class="timeline-dot dot-ok"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-time">08:35</div>
-                            <div class="timeline-title">Entrega concluída</div>
-                            <div class="timeline-desc">
-                                Lote conferido, aprovado e armazenado na câmara fria.
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
+            <div class="hero-mockup-linha">
+                <span>Produto</span>
+                <span>Leite Pasteurizado Integral</span>
+            </div>
+            <div class="hero-mockup-linha">
+                <span>Produtor</span>
+                <span>João da Silva</span>
+            </div>
+            <div class="hero-mockup-linha">
+                <span>Fazenda</span>
+                <span>Fazenda Boa Vista</span>
+            </div>
+            <div class="hero-mockup-linha">
+                <span>Município</span>
+                <span>Itaíba - PE</span>
             </div>
 
         </div>
 
-    </main>
+    </div>
+
+</section>
 
 
-    <footer>
-        Protótipo MVP — Gestão e Qualidade de Produtos Lácteos
-        <div class="footer-links">
-            <a href="privacidade.html">Política de Privacidade</a>
-            ·
-            <a href="termos.html">Termos e Condições</a>
+<!-- ===================== FUNCIONALIDADES ===================== -->
+<section class="secao" id="funcionalidades">
+
+    <h2 class="secao-titulo">Tudo que você precisa pra rastrear a produção</h2>
+    <p class="secao-subtitulo">
+        Um único lugar pra consultar, acompanhar e provar a qualidade de cada lote produzido.
+    </p>
+
+    <div class="funcionalidades-grid">
+
+        <div class="funcionalidade-card">
+            <div class="funcionalidade-icone">🔍</div>
+            <h3>Consulta de lote instantânea</h3>
+            <p>
+                Digite ou escaneie o código do lote e veja em segundos o produto, o produtor,
+                a fazenda, o animal de origem e a data de produção — tudo rastreado ponta a ponta.
+            </p>
         </div>
-    </footer>
 
-</div>
+        <div class="funcionalidade-card">
+            <div class="funcionalidade-icone">📊</div>
+            <h3>Indicadores de qualidade em tempo real</h3>
+            <p>
+                Gordura, proteína, pH e temperatura de cada lote, com alertas automáticos quando
+                algum valor sai do padrão esperado — antes que vire um problema maior.
+            </p>
+        </div>
 
-<script src="js/elementos.js"></script>
-<script src="js/dados.js"></script>
-<script src="js/ui.js"></script>
-<script src="js/autenticacao.js"></script>
-<script src="js/consulta-lote.js"></script>
-<script src="js/abas.js"></script>
-<script src="js/main.js"></script>
+        <div class="funcionalidade-card">
+            <div class="funcionalidade-icone">🚚</div>
+            <h3>Rota de entrega acompanhada</h3>
+            <p>
+                Veja o trajeto do lote da fazenda até o destino final, com mapa, horários e uma
+                linha do tempo de cada etapa da entrega.
+            </p>
+        </div>
+
+        <div class="funcionalidade-card">
+            <div class="funcionalidade-icone">⚡</div>
+            <h3>Busca inteligente</h3>
+            <p>
+                Autocomplete que sugere lotes conforme você digita, com atalhos rápidos pra
+                testar e consultar sem precisar decorar nenhum código.
+            </p>
+        </div>
+
+        <div class="funcionalidade-card">
+            <div class="funcionalidade-icone">🔐</div>
+            <h3>Conta própria e segura</h3>
+            <p>
+                Cadastro simples, recuperação de senha e uma área logada só sua — pra manter o
+                controle de qualidade da sua produção organizado num só lugar.
+            </p>
+        </div>
+
+        <div class="funcionalidade-card">
+            <div class="funcionalidade-icone">📱</div>
+            <h3>Funciona em qualquer tela</h3>
+            <p>
+                Interface pensada pra funcionar tanto no computador do escritório quanto no
+                celular, direto no curral ou na plataforma de entrega.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===================== POR QUE USAR ===================== -->
+<section class="secao secao-motivos">
+
+    <h2 class="secao-titulo">Por que usar o LactApp</h2>
+    <p class="secao-subtitulo">
+        Rastreabilidade não devia ser um trabalho manual. Veja o que muda no seu dia a dia.
+    </p>
+
+    <div class="motivos-grid">
+
+        <div class="motivo-item">
+            <div class="motivo-check">✓</div>
+            <div>
+                <h4>Transparência pra quem compra</h4>
+                <p>Mostre a origem real do produto — de qual fazenda, de qual animal, em qual data.</p>
+            </div>
+        </div>
+
+        <div class="motivo-item">
+            <div class="motivo-check">✓</div>
+            <div>
+                <h4>Menos planilha, menos erro</h4>
+                <p>Substitua controles soltos em papel ou planilha por um único lugar centralizado.</p>
+            </div>
+        </div>
+
+        <div class="motivo-item">
+            <div class="motivo-check">✓</div>
+            <div>
+                <h4>Pronto pra auditorias</h4>
+                <p>Tenha os indicadores de qualidade de cada lote sempre à mão quando precisar comprovar.</p>
+            </div>
+        </div>
+
+        <div class="motivo-item">
+            <div class="motivo-check">✓</div>
+            <div>
+                <h4>Alertas antes do problema</h4>
+                <p>Indicadores fora do padrão aparecem destacados, pra você agir antes de virar prejuízo.</p>
+            </div>
+        </div>
+
+        <div class="motivo-item">
+            <div class="motivo-check">✓</div>
+            <div>
+                <h4>Sem instalar nada</h4>
+                <p>Funciona direto no navegador — sem baixar aplicativo, sem ocupar espaço no celular.</p>
+            </div>
+        </div>
+
+        <div class="motivo-item">
+            <div class="motivo-check">✓</div>
+            <div>
+                <h4>Começa a usar hoje</h4>
+                <p>Cadastro leva menos de um minuto e já libera acesso a todas as funcionalidades.</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===================== GRÁTIS ===================== -->
+<section class="secao-gratis" id="gratis">
+
+    <div class="gratis-card">
+        <div class="hero-selo">💚 Sem pegadinha</div>
+        <div class="preco">R$ 0<span>&nbsp;/ sempre</span></div>
+        <p>Todas as funcionalidades do LactApp, sem custo.</p>
+
+        <ul class="gratis-lista">
+            <li>✓ Consulta de lotes ilimitada</li>
+            <li>✓ Indicadores de qualidade</li>
+            <li>✓ Rota de entrega</li>
+            <li>✓ Sem cartão de crédito</li>
+        </ul>
+
+        <a class="botao-cta-primario" href="app.html?tela=cadastro">Criar conta grátis agora</a>
+    </div>
+
+</section>
+
+
+<!-- ===================== CTA FINAL ===================== -->
+<section class="secao-cta-final">
+    <h2>Pronto pra rastrear sua produção?</h2>
+    <p>Crie sua conta grátis e consulte seu primeiro lote em menos de um minuto.</p>
+    <a class="botao-cta-primario" style="background:#176b45; color:white;" href="app.html?tela=cadastro">
+        Criar conta grátis
+    </a>
+</section>
+
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="landing-footer">
+    Protótipo MVP — Gestão e Qualidade de Produtos Lácteos
+    <div class="footer-links">
+        <a href="privacidade.html">Política de Privacidade</a>
+        ·
+        <a href="termos.html">Termos e Condições</a>
+    </div>
+</footer>
 
 </body>
 </html>

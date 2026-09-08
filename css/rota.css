@@ -1,0 +1,106 @@
+/* ===================== ROTA DE ENTREGA ===================== */
+.route-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.route-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.route-item .route-label {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.route-item .route-value {
+    font-size: 14px;
+    font-weight: bold;
+    color: #1f2933;
+}
+
+.route-status {
+    background: #fff7e6;
+    border: 1px solid #fde68a;
+    color: #92400e;
+    padding: 11px 14px;
+    border-radius: 9px;
+    font-size: 13px;
+}
+
+.map-frame {
+    width: 100%;
+    height: 340px;
+    border: 0;
+    display: block;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 8px;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 14px;
+    padding-bottom: 22px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 22px;
+    bottom: 0;
+    width: 2px;
+    background: #e2e6e4;
+}
+
+.timeline-item.last::before {
+    display: none;
+}
+
+.timeline-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.dot-ok {
+    background: #15803d;
+}
+
+.dot-warning {
+    background: #d97706;
+}
+
+.dot-progress {
+    background: #2563eb;
+}
+
+.timeline-time {
+    font-size: 12px;
+    color: #6b7280;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.timeline-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #1f2933;
+    margin-bottom: 3px;
+}
+
+.timeline-desc {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 19px;
+}

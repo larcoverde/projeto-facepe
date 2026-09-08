@@ -1,0 +1,14 @@
+/* ===================== BASE / RESET ===================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7f5;
+    color: #1f2933;
+    min-height: 100vh;
+}

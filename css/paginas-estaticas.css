@@ -1,0 +1,163 @@
+/* ===================== PÁGINAS ESTÁTICAS (privacidade, termos, 404) ===================== */
+
+.pagina-estatica-header {
+    background: #176b45;
+    color: white;
+    padding: 18px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pagina-estatica-header a {
+    color: white;
+    text-decoration: none;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.pagina-estatica-header .voltar {
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.4);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.pagina-estatica-header .voltar:hover {
+    background: rgba(255,255,255,.25);
+}
+
+.pagina-estatica-container {
+    max-width: 760px;
+    margin: 40px auto;
+    padding: 0 20px 60px;
+}
+
+.pagina-estatica-card {
+    background: white;
+    border-radius: 14px;
+    padding: 36px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+}
+
+.pagina-estatica-card h1 {
+    font-size: 26px;
+    margin-bottom: 8px;
+    color: #176b45;
+}
+
+.pagina-estatica-card .atualizado-em {
+    color: #6b7280;
+    font-size: 13px;
+    margin-bottom: 24px;
+}
+
+.pagina-estatica-card h2 {
+    font-size: 17px;
+    margin-top: 28px;
+    margin-bottom: 10px;
+    color: #1f2933;
+}
+
+.pagina-estatica-card p,
+.pagina-estatica-card li {
+    font-size: 14px;
+    line-height: 22px;
+    color: #374151;
+}
+
+.pagina-estatica-card ul {
+    padding-left: 20px;
+    margin-top: 8px;
+}
+
+.pagina-estatica-card li {
+    margin-bottom: 6px;
+}
+
+.aviso-demonstracao {
+    background: #f0f9f4;
+    border: 1px dashed #b8dcca;
+    border-radius: 9px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #176b45;
+    margin-bottom: 24px;
+    line-height: 20px;
+}
+
+/* ===================== 404 ===================== */
+.pagina-404 {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(160deg, #176b45 0%, #0e3f29 100%);
+    padding: 20px;
+    text-align: center;
+}
+
+.pagina-404-box {
+    background: white;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 16px;
+    padding: 44px 32px;
+    box-shadow: 0 10px 40px rgba(0,0,0,.25);
+}
+
+.pagina-404-emoji {
+    font-size: 46px;
+    margin-bottom: 6px;
+}
+
+.pagina-404-codigo {
+    font-size: 54px;
+    font-weight: bold;
+    color: #176b45;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.pagina-404-titulo {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1f2933;
+    margin-bottom: 8px;
+}
+
+.pagina-404-texto {
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 21px;
+    margin-bottom: 26px;
+}
+
+.pagina-404-botao {
+    display: inline-block;
+    width: 100%;
+    background: #176b45;
+    color: white;
+    border: none;
+    padding: 14px 0;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.pagina-404-botao:hover {
+    background: #115438;
+}
+
+@media (max-width: 700px) {
+    .pagina-estatica-header {
+        padding: 16px 20px;
+    }
+
+    .pagina-estatica-card {
+        padding: 26px 22px;
+    }
+}

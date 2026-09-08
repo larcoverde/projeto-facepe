@@ -1,0 +1,57 @@
+/* ===================== MOBILE ===================== */
+@media (max-width: 700px) {
+
+    header {
+        padding: 16px 20px;
+    }
+
+    .header-status {
+        display: none;
+    }
+
+    .container {
+        margin-top: 25px;
+    }
+
+    .search-area {
+        flex-direction: column;
+    }
+
+    .sugestoes-dropdown {
+        max-height: 180px;
+    }
+
+    button {
+        height: 48px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .quality-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .trace {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .line {
+        width: 2px;
+        height: 25px;
+    }
+
+    .tabs {
+        flex-direction: column;
+    }
+
+    .route-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .map-frame {
+        height: 260px;
+    }
+}

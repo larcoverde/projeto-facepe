@@ -1,0 +1,221 @@
+/* ===================== COMPONENTES BASE (input/button) ===================== */
+
+input {
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #176b45;
+}
+
+button {
+    background: #176b45;
+    color: white;
+    border: none;
+    padding: 0 24px;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #115438;
+}
+
+button:disabled,
+input:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+/* ===================== EXEMPLOS / CHIPS ===================== */
+.example {
+    margin-top: 12px;
+    font-size: 13px;
+    color: #777;
+}
+
+.example-codigos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.chip-codigo {
+    display: inline-block;
+    background: #f0f9f4;
+    border: 1px dashed #b8dcca;
+    color: #176b45;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.chip-codigo:hover {
+    background: #dcefe3;
+}
+
+/* ===================== AUTOCOMPLETE ===================== */
+.input-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+.input-wrapper input {
+    width: 100%;
+}
+
+.sugestoes-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    z-index: 10;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.sugestoes-dropdown.aberto {
+    display: block;
+}
+
+.sugestao-item {
+    padding: 11px 14px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f2f1;
+}
+
+.sugestao-item:last-child {
+    border-bottom: none;
+}
+
+.sugestao-item:hover {
+    background: #f0f9f4;
+}
+
+.sugestao-codigo {
+    font-weight: bold;
+    font-size: 14px;
+    color: #176b45;
+}
+
+.sugestao-produto {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 2px;
+}
+
+/* ===================== LOADING ===================== */
+@keyframes girar {
+    to { transform: rotate(360deg); }
+}
+
+.spinner {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    border: 2px solid #b8dcca;
+    border-top-color: #176b45;
+    border-radius: 50%;
+    animation: girar .7s linear infinite;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+.btn-spinner {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    border: 2px solid rgba(255,255,255,.5);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: girar .6s linear infinite;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+/* ===================== MICROINTERAÇÕES ===================== */
+.tela-transicao {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .28s ease, transform .28s ease;
+}
+
+.tela-transicao.tela-visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===================== TOASTS ===================== */
+.toast-container {
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+    width: min(90%, 380px);
+    pointer-events: none;
+}
+
+.toast {
+    background: #1f2937;
+    color: white;
+    padding: 13px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .25s ease, transform .25s ease;
+    border-left: 4px solid #6b7280;
+}
+
+.toast.mostrar {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast.sucesso {
+    border-left-color: #22c55e;
+}
+
+.toast.erro {
+    border-left-color: #ef4444;
+}
+
+.toast.info {
+    border-left-color: #3b82f6;
+}
+
+.btn-tentar-novamente {
+    background: #991b1b;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+.btn-tentar-novamente:hover {
+    background: #7f1717;
+}

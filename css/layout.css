@@ -1,0 +1,106 @@
+/* ===================== APP (pós-login) — ESTRUTURA ===================== */
+
+#appScreen {
+    display: none;
+}
+
+header {
+    background: #176b45;
+    color: white;
+    padding: 18px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.logo span {
+    font-weight: normal;
+    opacity: .85;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.header-status {
+    font-size: 13px;
+    opacity: .85;
+    text-align: right;
+}
+
+.logout-button {
+    background: rgba(255,255,255,.15);
+    color: white;
+    border: 1px solid rgba(255,255,255,.4);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background: rgba(255,255,255,.25);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+footer {
+    text-align: center;
+    color: #8a9299;
+    font-size: 12px;
+    padding: 35px 20px;
+}
+
+footer .footer-links {
+    margin-top: 8px;
+}
+
+footer .footer-links a {
+    color: #6b7280;
+    text-decoration: none;
+    margin: 0 8px;
+}
+
+footer .footer-links a:hover {
+    color: #176b45;
+    text-decoration: underline;
+}
+
+/* ===================== ABAS ===================== */
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.tab-button {
+    background: white;
+    color: #6b7280;
+    border: 1px solid #e2e6e4;
+    padding: 12px 20px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.tab-button:hover {
+    background: #f4f7f5;
+}
+
+.tab-button.active {
+    background: #176b45;
+    color: white;
+    border-color: #176b45;
+}

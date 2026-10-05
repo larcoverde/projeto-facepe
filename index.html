@@ -5,7 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>LactApp — Rastreabilidade e Qualidade de Produtos Lácteos, grátis</title>
+
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="alternate icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="assets/site.webmanifest">
     <meta name="description" content="Rastreie a origem, a qualidade e a rota de cada lote de produto lácteo, do produtor ao consumidor. Grátis, sem instalação.">
+
+    <script src="js/cookies.js"></script>
+    <script>
+        (function () {
+            var preferencia = lerCookie("lactapp-tema") || "claro";
+            var escuro = preferencia === "escuro" ||
+                (preferencia === "sistema" && window.matchMedia &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches);
+            if (escuro) {
+                document.documentElement.setAttribute("data-theme", "escuro");
+            }
+        })();
+    </script>
 
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/landing.css">
@@ -17,7 +37,10 @@
 
     <header class="landing-header">
         <a class="logo-landing" href="index.html">🥛 LactApp</a>
-        <a class="botao-entrar" href="app.html">Entrar</a>
+        <div class="header-direita">
+            <button class="botao-tema" id="botaoTema" type="button" aria-label="Ativar tema escuro">🌙</button>
+            <a class="botao-entrar" href="app.html">Entrar</a>
+        </div>
     </header>
 
     <div class="hero-content">
@@ -248,7 +271,7 @@
 <section class="secao-cta-final">
     <h2>Pronto pra rastrear sua produção?</h2>
     <p>Crie sua conta grátis e consulte seu primeiro lote em menos de um minuto.</p>
-    <a class="botao-cta-primario" style="background:#176b45; color:white;" href="app.html?tela=cadastro">
+    <a class="botao-cta-primario" href="app.html?tela=cadastro">
         Criar conta grátis
     </a>
 </section>
@@ -263,6 +286,9 @@
         <a href="termos.html">Termos e Condições</a>
     </div>
 </footer>
+
+<script src="js/tema.js"></script>
+<script src="js/consentimento.js"></script>
 
 </body>
 </html>

@@ -6,6 +6,28 @@
 
     <title>LactApp — Gestão e Qualidade</title>
 
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="alternate icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+
+    <script src="js/cookies.js"></script>
+    <script src="js/anti-bot.js"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstile" async defer></script>
+    <script>
+        (function () {
+            var preferencia = lerCookie("lactapp-tema") || "claro";
+            var escuro = preferencia === "escuro" ||
+                (preferencia === "sistema" && window.matchMedia &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches);
+            if (escuro) {
+                document.documentElement.setAttribute("data-theme", "escuro");
+            }
+        })();
+    </script>
+
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/autenticacao.css">
     <link rel="stylesheet" href="css/layout.css">
@@ -20,6 +42,9 @@
 
 <!-- ===================== TELA DE LOGIN ===================== -->
 <div id="loginScreen" class="tela-transicao tela-visivel">
+
+    <button class="botao-tema botao-tema-flutuante" id="botaoTemaLogin" type="button" aria-label="Ativar tema escuro">🌙</button>
+
 
     <!-- ---------- ENTRAR ---------- -->
     <div class="login-box tela-transicao tela-visivel" id="loginBox">
@@ -53,6 +78,18 @@
                 <button type="button" class="toggle-senha" data-target="senha" aria-label="Mostrar senha">👁</button>
             </div>
         </div>
+
+        <div class="campo-checkbox">
+            <input type="checkbox" id="manterConectado">
+            <label for="manterConectado">Manter conectado neste navegador</label>
+        </div>
+
+        <div class="campo-armadilha" aria-hidden="true">
+            <label for="honeypotLogin">Deixe este campo em branco</label>
+            <input type="text" id="honeypotLogin" name="site" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="turnstile-wrapper" id="turnstileLogin"></div>
 
         <button class="login-button" id="btnEntrar">Entrar</button>
 
@@ -113,6 +150,21 @@
             <div class="field-hint" id="cadConfirmarSenhaHint"></div>
         </div>
 
+        <div class="campo-checkbox">
+            <input type="checkbox" id="cadAceiteTermos">
+            <label for="cadAceiteTermos">
+                Li e aceito os <a href="termos.html" target="_blank">Termos e Condições</a>
+                e a <a href="privacidade.html" target="_blank">Política de Privacidade</a>
+            </label>
+        </div>
+
+        <div class="campo-armadilha" aria-hidden="true">
+            <label for="honeypotCadastro">Deixe este campo em branco</label>
+            <input type="text" id="honeypotCadastro" name="site" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="turnstile-wrapper" id="turnstileCadastro"></div>
+
         <button class="login-button" id="btnCriarConta">Criar conta</button>
 
         <div class="login-links login-links-center">
@@ -142,6 +194,13 @@
             <div class="field-hint" id="recEmailHint"></div>
         </div>
 
+        <div class="campo-armadilha" aria-hidden="true">
+            <label for="honeypotRecuperar">Deixe este campo em branco</label>
+            <input type="text" id="honeypotRecuperar" name="site" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="turnstile-wrapper" id="turnstileRecuperar"></div>
+
         <button class="login-button" id="btnRecuperar">Enviar instruções</button>
 
         <div class="login-links login-links-center">
@@ -165,6 +224,8 @@
             <div class="header-status">
                 Sistema de rastreabilidade
             </div>
+
+            <button class="botao-tema" id="botaoTema" type="button" aria-label="Ativar tema escuro">🌙</button>
 
             <button class="logout-button" id="btnSair">Sair</button>
         </div>
@@ -555,6 +616,8 @@
 <script src="js/consulta-lote.js"></script>
 <script src="js/abas.js"></script>
 <script src="js/main.js"></script>
+<script src="js/tema.js"></script>
+<script src="js/consentimento.js"></script>
 
 </body>
 </html>

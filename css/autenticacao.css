@@ -5,30 +5,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(160deg, #176b45 0%, #0e3f29 100%);
+    background: linear-gradient(160deg, var(--cor-marca) 0%, var(--cor-marca-escura) 100%);
     padding: 20px;
 }
 
 .login-box {
-    background: white;
+    background: var(--cor-superficie);
     width: 100%;
     max-width: 380px;
     border-radius: 16px;
     padding: 36px 32px;
-    box-shadow: 0 10px 40px rgba(0,0,0,.25);
+    box-shadow: var(--sombra-elevada);
 }
 
 .login-logo {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
-    color: #176b45;
+    color: var(--cor-marca-texto);
     margin-bottom: 4px;
 }
 
 .login-subtitle {
     text-align: center;
-    color: #6b7280;
+    color: var(--cor-texto-secundario);
     font-size: 13px;
     margin-bottom: 28px;
 }
@@ -40,7 +40,7 @@
 .field label {
     display: block;
     font-size: 13px;
-    color: #374151;
+    color: var(--cor-texto);
     font-weight: bold;
     margin-bottom: 6px;
 }
@@ -48,22 +48,24 @@
 .field input {
     width: 100%;
     padding: 13px 14px;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--cor-borda-input);
     border-radius: 9px;
     font-size: 15px;
     outline: none;
+    background: var(--cor-superficie);
+    color: var(--cor-texto);
 }
 
 .field input:focus {
-    border-color: #176b45;
+    border-color: var(--cor-marca);
 }
 
 .field input.valido {
-    border-color: #22c55e;
+    border-color: var(--cor-sucesso-borda);
 }
 
 .field input.invalido {
-    border-color: #ef4444;
+    border-color: var(--cor-erro-solido);
 }
 
 .field-hint {
@@ -73,11 +75,11 @@
 }
 
 .field-hint.erro {
-    color: #b91c1c;
+    color: var(--cor-erro-forte);
 }
 
 .field-hint.sucesso {
-    color: #15803d;
+    color: var(--cor-sucesso-forte);
 }
 
 .password-wrapper {
@@ -99,18 +101,18 @@
     padding: 6px 10px;
     cursor: pointer;
     font-size: 16px;
-    color: #6b7280;
+    color: var(--cor-texto-secundario);
     line-height: 1;
 }
 
 .toggle-senha:hover {
     background: none;
-    color: #176b45;
+    color: var(--cor-marca-texto);
 }
 
 .login-button {
     width: 100%;
-    background: #176b45;
+    background: var(--cor-marca);
     color: white;
     border: none;
     padding: 14px 0;
@@ -122,24 +124,24 @@
 }
 
 .login-button:hover {
-    background: #115438;
+    background: var(--cor-marca-hover);
 }
 
 .login-hint {
     margin-top: 16px;
-    background: #f0f9f4;
-    border: 1px dashed #b8dcca;
+    background: var(--cor-marca-fundo-suave);
+    border: 1px dashed var(--cor-marca-borda-suave);
     border-radius: 9px;
     padding: 10px 12px;
     font-size: 12px;
-    color: #176b45;
+    color: var(--cor-marca-texto);
     text-align: center;
 }
 
 .login-error {
     display: none;
-    background: #fee2e2;
-    color: #991b1b;
+    background: var(--cor-erro-fundo);
+    color: var(--cor-erro-texto);
     padding: 11px 13px;
     border-radius: 9px;
     font-size: 13px;
@@ -148,8 +150,8 @@
 
 .login-success {
     display: none;
-    background: #dcfce7;
-    color: #166534;
+    background: var(--cor-sucesso-fundo);
+    color: var(--cor-sucesso-texto);
     padding: 11px 13px;
     border-radius: 9px;
     font-size: 13px;
@@ -167,7 +169,7 @@
 }
 
 .login-links a {
-    color: #176b45;
+    color: var(--cor-marca-texto);
     font-size: 13px;
     font-weight: bold;
     text-decoration: none;
@@ -178,8 +180,62 @@
 }
 
 .recover-text {
-    color: #6b7280;
+    color: var(--cor-texto-secundario);
     font-size: 13px;
     line-height: 19px;
     margin-bottom: 20px;
+}
+
+.campo-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin-bottom: 18px;
+}
+
+.campo-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    margin-top: 2px;
+    accent-color: var(--cor-marca);
+    cursor: pointer;
+}
+
+.campo-checkbox label {
+    font-size: 13px;
+    color: var(--cor-texto-secundario);
+    line-height: 18px;
+    cursor: pointer;
+}
+
+.campo-checkbox label a {
+    color: var(--cor-marca-texto);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.campo-checkbox label a:hover {
+    text-decoration: underline;
+}
+
+/* Honeypot: existe no HTML (pra bots simples preencherem), mas fica
+   fora da área visível e fora da navegação por teclado/leitor de tela
+   para usuários reais. Não usamos display:none nem visibility:hidden
+   porque alguns bots já ignoram campos ocultos dessa forma. */
+.campo-armadilha {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.turnstile-wrapper {
+    margin-bottom: 16px;
+}
+
+.turnstile-wrapper:empty {
+    margin-bottom: 0;
 }

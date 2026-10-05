@@ -4,6 +4,12 @@ function mostrarTelaAuth(tela) {
 
     const boxes = { login: loginBox, cadastro: cadastroBox, recuperar: recuperarBox };
 
+    const idTurnstile = {
+        login: "turnstileLogin",
+        cadastro: "turnstileCadastro",
+        recuperar: "turnstileRecuperar",
+    };
+
     Object.keys(boxes).forEach(function (nome) {
 
         if (nome === tela) {
@@ -19,6 +25,12 @@ function mostrarTelaAuth(tela) {
     cadastroSucesso.style.display = "none";
     recuperarError.style.display = "none";
     recuperarSucesso.style.display = "none";
+
+    // Reinicia a contagem de tempo (proteção anti-bot) para a tela que
+    // acabou de ficar visível, e garante que o Turnstile dela já esteja
+    // renderizado.
+    iniciarRelogioFormulario(tela);
+    renderizarTurnstile(idTurnstile[tela]);
 
 }
 
@@ -38,6 +50,10 @@ linkVoltarLoginDeRecuperar.addEventListener("click", function () {
     mostrarTelaAuth("login");
 });
 
+// A tela de login já começa visível ao carregar a página (sem passar por
+// mostrarTelaAuth), então inicia o relógio dela manualmente aqui.
+iniciarRelogioFormulario("login");
+
 
 /* ===================== LOGIN ===================== */
 
@@ -48,6 +64,18 @@ function fazerLogin() {
 
     loginError.style.display = "none";
 
+    if (pareceBot("login", honeypotLogin)) {
+        loginError.textContent = "Não foi possível continuar. Tente novamente.";
+        loginError.style.display = "block";
+        return;
+    }
+
+    if (!turnstileFoiResolvido("turnstileLogin")) {
+        loginError.textContent = "Confirme que você não é um robô antes de continuar.";
+        loginError.style.display = "block";
+        return;
+    }
+
     const contaValida = usuariosCadastrados.find(function (conta) {
         return conta.usuario === usuario && conta.senha === senha;
     });
@@ -57,9 +85,17 @@ function fazerLogin() {
         esconderElemento(loginScreen);
         exibirComFade(appScreen, "block");
 
+        if (manterConectado && manterConectado.checked) {
+            definirCookie("lactapp-sessao", usuario, 30);
+        } else {
+            removerCookie("lactapp-sessao");
+        }
+
         mostrarToast("Login realizado com sucesso!", "sucesso");
 
     } else {
+
+        resetarTurnstile("turnstileLogin");
 
         loginError.textContent = "Usuário ou senha inválidos. Tente novamente.";
         loginError.style.display = "block";
@@ -78,6 +114,12 @@ function fazerLogout() {
 
     inputUsuario.value = "";
     inputSenha.value = "";
+
+    if (manterConectado) {
+        manterConectado.checked = false;
+    }
+
+    removerCookie("lactapp-sessao");
 
     inputCodigo.value = "";
     esconderElemento(resultado);
@@ -193,6 +235,16 @@ function fazerCadastro() {
         cadastroError.style.display = "block";
     }
 
+    if (pareceBot("cadastro", honeypotCadastro)) {
+        mostrarErro("Não foi possível continuar. Tente novamente.");
+        return;
+    }
+
+    if (!turnstileFoiResolvido("turnstileCadastro")) {
+        mostrarErro("Confirme que você não é um robô antes de continuar.");
+        return;
+    }
+
     if (!nome || !email || !usuario || !senha || !confirmarSenha) {
         mostrarErro("Preencha todos os campos para continuar.");
         return;
@@ -210,6 +262,11 @@ function fazerCadastro() {
 
     if (senha !== confirmarSenha) {
         mostrarErro("As senhas não coincidem.");
+        return;
+    }
+
+    if (!cadAceiteTermos || !cadAceiteTermos.checked) {
+        mostrarErro("Você precisa aceitar os Termos e Condições e a Política de Privacidade para continuar.");
         return;
     }
 
@@ -231,7 +288,13 @@ function fazerCadastro() {
         return;
     }
 
-    usuariosCadastrados.push({ nome: nome, email: email, usuario: usuario, senha: senha });
+    usuariosCadastrados.push({
+        nome: nome,
+        email: email,
+        usuario: usuario,
+        senha: senha,
+        aceitouTermosEm: new Date().toISOString(),
+    });
 
     cadastroSucesso.textContent =
         "Conta criada com sucesso! Agora você já pode entrar com seu usuário e senha.";
@@ -244,6 +307,10 @@ function fazerCadastro() {
     cadUsuario.value = "";
     cadSenha.value = "";
     cadConfirmarSenha.value = "";
+
+    if (cadAceiteTermos) {
+        cadAceiteTermos.checked = false;
+    }
 
     [cadEmail, cadUsuario, cadSenha, cadConfirmarSenha].forEach(function (campo) {
         campo.classList.remove("valido", "invalido");
@@ -284,6 +351,18 @@ function fazerRecuperacao() {
 
     recuperarError.style.display = "none";
     recuperarSucesso.style.display = "none";
+
+    if (pareceBot("recuperar", honeypotRecuperar)) {
+        recuperarError.textContent = "Não foi possível continuar. Tente novamente.";
+        recuperarError.style.display = "block";
+        return;
+    }
+
+    if (!turnstileFoiResolvido("turnstileRecuperar")) {
+        recuperarError.textContent = "Confirme que você não é um robô antes de continuar.";
+        recuperarError.style.display = "block";
+        return;
+    }
 
     if (!email || !validarEmail(email)) {
         recuperarError.textContent = "Informe um e-mail válido.";

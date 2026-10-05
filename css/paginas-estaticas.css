@@ -1,7 +1,7 @@
 /* ===================== PÁGINAS ESTÁTICAS (privacidade, termos, 404) ===================== */
 
 .pagina-estatica-header {
-    background: #176b45;
+    background: var(--cor-marca);
     color: white;
     padding: 18px 30px;
     display: flex;
@@ -14,6 +14,12 @@
     text-decoration: none;
     font-size: 21px;
     font-weight: bold;
+}
+
+.pagina-estatica-header .header-direita {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .pagina-estatica-header .voltar {
@@ -36,20 +42,20 @@
 }
 
 .pagina-estatica-card {
-    background: white;
+    background: var(--cor-superficie);
     border-radius: 14px;
     padding: 36px;
-    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    box-shadow: var(--sombra-card);
 }
 
 .pagina-estatica-card h1 {
     font-size: 26px;
     margin-bottom: 8px;
-    color: #176b45;
+    color: var(--cor-marca-texto);
 }
 
 .pagina-estatica-card .atualizado-em {
-    color: #6b7280;
+    color: var(--cor-texto-secundario);
     font-size: 13px;
     margin-bottom: 24px;
 }
@@ -58,14 +64,14 @@
     font-size: 17px;
     margin-top: 28px;
     margin-bottom: 10px;
-    color: #1f2933;
+    color: var(--cor-texto);
 }
 
 .pagina-estatica-card p,
 .pagina-estatica-card li {
     font-size: 14px;
     line-height: 22px;
-    color: #374151;
+    color: var(--cor-texto-secundario);
 }
 
 .pagina-estatica-card ul {
@@ -78,12 +84,12 @@
 }
 
 .aviso-demonstracao {
-    background: #f0f9f4;
-    border: 1px dashed #b8dcca;
+    background: var(--cor-marca-fundo-suave);
+    border: 1px dashed var(--cor-marca-borda-suave);
     border-radius: 9px;
     padding: 14px 16px;
     font-size: 13px;
-    color: #176b45;
+    color: var(--cor-marca-texto);
     margin-bottom: 24px;
     line-height: 20px;
 }
@@ -94,18 +100,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(160deg, #176b45 0%, #0e3f29 100%);
+    background: linear-gradient(160deg, var(--cor-marca) 0%, var(--cor-marca-escura) 100%);
     padding: 20px;
     text-align: center;
 }
 
 .pagina-404-box {
-    background: white;
+    background: var(--cor-superficie);
     width: 100%;
     max-width: 420px;
     border-radius: 16px;
     padding: 44px 32px;
-    box-shadow: 0 10px 40px rgba(0,0,0,.25);
+    box-shadow: var(--sombra-elevada);
 }
 
 .pagina-404-emoji {
@@ -116,7 +122,7 @@
 .pagina-404-codigo {
     font-size: 54px;
     font-weight: bold;
-    color: #176b45;
+    color: var(--cor-marca-texto);
     line-height: 1;
     margin-bottom: 10px;
 }
@@ -124,12 +130,12 @@
 .pagina-404-titulo {
     font-size: 18px;
     font-weight: bold;
-    color: #1f2933;
+    color: var(--cor-texto);
     margin-bottom: 8px;
 }
 
 .pagina-404-texto {
-    color: #6b7280;
+    color: var(--cor-texto-secundario);
     font-size: 14px;
     line-height: 21px;
     margin-bottom: 26px;
@@ -138,7 +144,7 @@
 .pagina-404-botao {
     display: inline-block;
     width: 100%;
-    background: #176b45;
+    background: var(--cor-marca);
     color: white;
     border: none;
     padding: 14px 0;
@@ -149,7 +155,7 @@
 }
 
 .pagina-404-botao:hover {
-    background: #115438;
+    background: var(--cor-marca-hover);
 }
 
 @media (max-width: 700px) {

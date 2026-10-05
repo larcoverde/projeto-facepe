@@ -5,7 +5,7 @@
 }
 
 header {
-    background: #176b45;
+    background: var(--cor-marca);
     color: white;
     padding: 18px 30px;
     display: flex;
@@ -57,7 +57,7 @@ header {
 
 footer {
     text-align: center;
-    color: #8a9299;
+    color: var(--cor-texto-suave);
     font-size: 12px;
     padding: 35px 20px;
 }
@@ -67,13 +67,13 @@ footer .footer-links {
 }
 
 footer .footer-links a {
-    color: #6b7280;
+    color: var(--cor-texto-secundario);
     text-decoration: none;
     margin: 0 8px;
 }
 
 footer .footer-links a:hover {
-    color: #176b45;
+    color: var(--cor-marca-texto);
     text-decoration: underline;
 }
 
@@ -85,9 +85,9 @@ footer .footer-links a:hover {
 }
 
 .tab-button {
-    background: white;
-    color: #6b7280;
-    border: 1px solid #e2e6e4;
+    background: var(--cor-superficie);
+    color: var(--cor-texto-secundario);
+    border: 1px solid var(--cor-borda);
     padding: 12px 20px;
     border-radius: 9px;
     font-size: 14px;
@@ -96,11 +96,11 @@ footer .footer-links a:hover {
 }
 
 .tab-button:hover {
-    background: #f4f7f5;
+    background: var(--cor-fundo);
 }
 
 .tab-button.active {
-    background: #176b45;
+    background: var(--cor-marca);
     color: white;
-    border-color: #176b45;
+    border-color: var(--cor-marca);
 }

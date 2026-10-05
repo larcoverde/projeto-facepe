@@ -6,10 +6,32 @@
 
     <title>Página não encontrada — LactApp</title>
 
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="alternate icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+
+    <script src="js/cookies.js"></script>
+    <script>
+        (function () {
+            var preferencia = lerCookie("lactapp-tema") || "claro";
+            var escuro = preferencia === "escuro" ||
+                (preferencia === "sistema" && window.matchMedia &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches);
+            if (escuro) {
+                document.documentElement.setAttribute("data-theme", "escuro");
+            }
+        })();
+    </script>
+
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/paginas-estaticas.css">
 </head>
 <body>
+
+<button class="botao-tema botao-tema-flutuante" id="botaoTema" type="button" aria-label="Ativar tema escuro">🌙</button>
 
 <div class="pagina-404">
     <div class="pagina-404-box">
@@ -23,6 +45,9 @@
         <a class="pagina-404-botao" href="/">Voltar para o início</a>
     </div>
 </div>
+
+<script src="js/tema.js"></script>
+<script src="js/consentimento.js"></script>
 
 </body>
 </html>

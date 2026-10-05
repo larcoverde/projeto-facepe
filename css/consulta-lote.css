@@ -1,9 +1,9 @@
 /* ===================== BUSCA ===================== */
 .search-box {
-    background: white;
+    background: var(--cor-superficie);
     border-radius: 14px;
     padding: 28px;
-    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    box-shadow: var(--sombra-card);
     margin-bottom: 25px;
 }
 
@@ -13,7 +13,7 @@
 }
 
 .search-box p {
-    color: #6b7280;
+    color: var(--cor-texto-secundario);
     margin-bottom: 22px;
 }
 
@@ -25,8 +25,8 @@
 /* ===================== ERRO ===================== */
 .error {
     display: none;
-    background: #fee2e2;
-    color: #991b1b;
+    background: var(--cor-erro-fundo);
+    color: var(--cor-erro-texto);
     padding: 14px;
     border-radius: 9px;
     margin-top: 15px;
@@ -50,8 +50,8 @@
 }
 
 .status {
-    background: #dcfce7;
-    color: #166534;
+    background: var(--cor-sucesso-fundo);
+    color: var(--cor-sucesso-texto);
     padding: 7px 12px;
     border-radius: 20px;
     font-size: 13px;
@@ -59,13 +59,13 @@
 }
 
 .status.atencao {
-    background: #fef3c7;
-    color: #92400e;
+    background: var(--cor-atencao-fundo);
+    color: var(--cor-atencao-texto);
 }
 
 .status.critico {
-    background: #fee2e2;
-    color: #991b1b;
+    background: var(--cor-erro-fundo);
+    color: var(--cor-erro-texto);
 }
 
 /* ===================== CARDS ===================== */
@@ -76,23 +76,23 @@
 }
 
 .card {
-    background: white;
+    background: var(--cor-superficie);
     border-radius: 13px;
     padding: 22px;
-    box-shadow: 0 3px 15px rgba(0,0,0,.05);
+    box-shadow: var(--sombra-card-suave);
 }
 
 .card h3 {
     font-size: 16px;
     margin-bottom: 17px;
-    color: #176b45;
+    color: var(--cor-marca-texto);
 }
 
 .info {
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
-    border-bottom: 1px solid #eef0f2;
+    border-bottom: 1px solid var(--cor-borda-sutil);
     font-size: 14px;
 }
 
@@ -101,7 +101,7 @@
 }
 
 .label {
-    color: #6b7280;
+    color: var(--cor-texto-secundario);
 }
 
 .value {
@@ -117,7 +117,7 @@
 }
 
 .quality-item {
-    background: #f8faf9;
+    background: var(--cor-superficie-alt);
     border-radius: 10px;
     padding: 15px;
     text-align: center;
@@ -125,47 +125,47 @@
 }
 
 .quality-item.atencao {
-    background: #fffbeb;
-    border-color: #fde68a;
+    background: var(--cor-atencao-fundo-suave);
+    border-color: var(--cor-atencao-borda);
 }
 
 .quality-item.critico {
-    background: #fef2f2;
-    border-color: #fecaca;
+    background: var(--cor-erro-fundo-suave);
+    border-color: var(--cor-erro-borda);
 }
 
 .quality-value {
     font-size: 21px;
     font-weight: bold;
-    color: #176b45;
+    color: var(--cor-marca-texto);
 }
 
 .quality-item.atencao .quality-value {
-    color: #92400e;
+    color: var(--cor-atencao-texto);
 }
 
 .quality-item.critico .quality-value {
-    color: #991b1b;
+    color: var(--cor-erro-texto);
 }
 
 .quality-label {
     margin-top: 5px;
-    color: #6b7280;
+    color: var(--cor-texto-secundario);
     font-size: 12px;
 }
 
 .quality-ok {
     margin-top: 8px;
     font-size: 11px;
-    color: #15803d;
+    color: var(--cor-sucesso-forte);
 }
 
 .quality-ok.atencao {
-    color: #b45309;
+    color: var(--cor-atencao-forte);
 }
 
 .quality-ok.critico {
-    color: #b91c1c;
+    color: var(--cor-erro-forte);
 }
 
 /* ===================== RASTREABILIDADE ===================== */
@@ -186,7 +186,7 @@
     height: 45px;
     margin: auto;
     border-radius: 50%;
-    background: #e4f3eb;
+    background: var(--cor-marca-fundo-suave);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -201,12 +201,12 @@
 
 .trace-subtitle {
     font-size: 11px;
-    color: #777;
+    color: var(--cor-texto-suave);
     margin-top: 3px;
 }
 
 .line {
     height: 2px;
-    background: #b8dcca;
+    background: var(--cor-marca-borda-suave);
     flex: .5;
 }

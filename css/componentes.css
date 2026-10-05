@@ -3,18 +3,20 @@
 input {
     flex: 1;
     padding: 14px 16px;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--cor-borda-input);
     border-radius: 9px;
     font-size: 15px;
     outline: none;
+    background: var(--cor-superficie);
+    color: var(--cor-texto);
 }
 
 input:focus {
-    border-color: #176b45;
+    border-color: var(--cor-marca);
 }
 
 button {
-    background: #176b45;
+    background: var(--cor-marca);
     color: white;
     border: none;
     padding: 0 24px;
@@ -25,7 +27,7 @@ button {
 }
 
 button:hover {
-    background: #115438;
+    background: var(--cor-marca-hover);
 }
 
 button:disabled,
@@ -38,7 +40,7 @@ input:disabled {
 .example {
     margin-top: 12px;
     font-size: 13px;
-    color: #777;
+    color: var(--cor-texto-secundario);
 }
 
 .example-codigos {
@@ -50,9 +52,9 @@ input:disabled {
 
 .chip-codigo {
     display: inline-block;
-    background: #f0f9f4;
-    border: 1px dashed #b8dcca;
-    color: #176b45;
+    background: var(--cor-marca-fundo-suave);
+    border: 1px dashed var(--cor-marca-borda-suave);
+    color: var(--cor-marca-texto);
     font-weight: bold;
     font-size: 12px;
     padding: 6px 10px;
@@ -61,7 +63,7 @@ input:disabled {
 }
 
 .chip-codigo:hover {
-    background: #dcefe3;
+    background: var(--cor-marca-fundo-suave-hover);
 }
 
 /* ===================== AUTOCOMPLETE ===================== */
@@ -80,10 +82,10 @@ input:disabled {
     top: calc(100% + 6px);
     left: 0;
     right: 0;
-    background: white;
-    border: 1px solid #d1d5db;
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda-input);
     border-radius: 9px;
-    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    box-shadow: var(--sombra-flutuante);
     z-index: 10;
     max-height: 220px;
     overflow-y: auto;
@@ -96,7 +98,7 @@ input:disabled {
 .sugestao-item {
     padding: 11px 14px;
     cursor: pointer;
-    border-bottom: 1px solid #f0f2f1;
+    border-bottom: 1px solid var(--cor-borda-sutil);
 }
 
 .sugestao-item:last-child {
@@ -104,18 +106,18 @@ input:disabled {
 }
 
 .sugestao-item:hover {
-    background: #f0f9f4;
+    background: var(--cor-marca-fundo-suave);
 }
 
 .sugestao-codigo {
     font-weight: bold;
     font-size: 14px;
-    color: #176b45;
+    color: var(--cor-marca-texto);
 }
 
 .sugestao-produto {
     font-size: 12px;
-    color: #6b7280;
+    color: var(--cor-texto-secundario);
     margin-top: 2px;
 }
 
@@ -128,8 +130,8 @@ input:disabled {
     display: inline-block;
     width: 11px;
     height: 11px;
-    border: 2px solid #b8dcca;
-    border-top-color: #176b45;
+    border: 2px solid var(--cor-marca-borda-suave);
+    border-top-color: var(--cor-marca);
     border-radius: 50%;
     animation: girar .7s linear infinite;
     vertical-align: middle;
@@ -172,10 +174,15 @@ input:disabled {
     z-index: 1000;
     width: min(90%, 380px);
     pointer-events: none;
+    transition: bottom .25s ease;
+}
+
+.toast-container.acima-do-banner-cookies {
+    bottom: 90px;
 }
 
 .toast {
-    background: #1f2937;
+    background: var(--cor-toast-fundo);
     color: white;
     padding: 13px 16px;
     border-radius: 10px;
@@ -193,19 +200,19 @@ input:disabled {
 }
 
 .toast.sucesso {
-    border-left-color: #22c55e;
+    border-left-color: var(--cor-sucesso-borda);
 }
 
 .toast.erro {
-    border-left-color: #ef4444;
+    border-left-color: var(--cor-erro-solido);
 }
 
 .toast.info {
-    border-left-color: #3b82f6;
+    border-left-color: var(--cor-info);
 }
 
 .btn-tentar-novamente {
-    background: #991b1b;
+    background: var(--cor-erro-forte);
     color: white;
     border: none;
     padding: 6px 12px;

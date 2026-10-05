@@ -6,6 +6,26 @@
 
     <title>Política de Privacidade — LactApp</title>
 
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="alternate icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+
+    <script src="js/cookies.js"></script>
+    <script>
+        (function () {
+            var preferencia = lerCookie("lactapp-tema") || "claro";
+            var escuro = preferencia === "escuro" ||
+                (preferencia === "sistema" && window.matchMedia &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches);
+            if (escuro) {
+                document.documentElement.setAttribute("data-theme", "escuro");
+            }
+        })();
+    </script>
+
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/paginas-estaticas.css">
 </head>
@@ -13,7 +33,10 @@
 
 <header class="pagina-estatica-header">
     <a href="index.html">🥛 LactApp</a>
-    <a class="voltar" href="app.html">← Voltar para o app</a>
+    <div class="header-direita">
+        <button class="botao-tema" id="botaoTema" type="button" aria-label="Ativar tema escuro">🌙</button>
+        <a class="voltar" href="app.html">← Voltar para o app</a>
+    </div>
 </header>
 
 <div class="pagina-estatica-container">
@@ -99,6 +122,9 @@
 
     </div>
 </div>
+
+<script src="js/tema.js"></script>
+<script src="js/consentimento.js"></script>
 
 </body>
 </html>

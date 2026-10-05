@@ -12,6 +12,8 @@ const recuperarBox = document.getElementById("recuperarBox");
 
 const inputUsuario = document.getElementById("usuario");
 const inputSenha = document.getElementById("senha");
+const manterConectado = document.getElementById("manterConectado");
+const honeypotLogin = document.getElementById("honeypotLogin");
 const loginError = document.getElementById("loginError");
 
 const cadNome = document.getElementById("cadNome");
@@ -19,6 +21,8 @@ const cadEmail = document.getElementById("cadEmail");
 const cadUsuario = document.getElementById("cadUsuario");
 const cadSenha = document.getElementById("cadSenha");
 const cadConfirmarSenha = document.getElementById("cadConfirmarSenha");
+const cadAceiteTermos = document.getElementById("cadAceiteTermos");
+const honeypotCadastro = document.getElementById("honeypotCadastro");
 const cadastroError = document.getElementById("cadastroError");
 const cadastroSucesso = document.getElementById("cadastroSucesso");
 
@@ -31,6 +35,7 @@ const recEmail = document.getElementById("recEmail");
 const recuperarError = document.getElementById("recuperarError");
 const recuperarSucesso = document.getElementById("recuperarSucesso");
 const recEmailHint = document.getElementById("recEmailHint");
+const honeypotRecuperar = document.getElementById("honeypotRecuperar");
 
 const btnEntrar = document.getElementById("btnEntrar");
 const btnCriarConta = document.getElementById("btnCriarConta");
